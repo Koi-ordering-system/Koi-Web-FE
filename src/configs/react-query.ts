@@ -9,11 +9,11 @@ export function createGlobalState<T, K extends [string, unknown]>(
     const queryClient = useQueryClient();
 
     const { data, error, isLoading } = useQuery({
-      queryKey: [queryKey] as [K],
       queryFn: queryFn,
       initialData: initialData,
       staleTime: Infinity,
       refetchInterval: false,
+      queryKey: [queryKey] as [K],
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,

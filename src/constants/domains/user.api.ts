@@ -4,7 +4,6 @@ import { UserRequest } from "@/models/request/user.request";
 import { UserResponse } from "@/models/response/user.response";
 
 export const userApi = {
-  // example of a function that calls an API
   listUsers: async (
     options?: Record<string, unknown>
   ): Promise<UserResponse[] | null> =>

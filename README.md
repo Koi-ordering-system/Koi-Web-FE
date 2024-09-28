@@ -48,3 +48,12 @@ export default tseslint.config({
   },
 })
 ```
+
+## Enviroment
+
+````
+VITE_API_URL_BE=https://api.example.com
+VITE_DOMAIN_AUTH0=dev-f47t4m16xoeqzwvb.us.auth0.com
+VITE_CLIENT_ID_AUTH0=GrZbj9m8QOVY2uJn27zvfOGNd3CHp5ZS
+VITE_CLIENT_SECRET_AUTH0=Kr0k0tW2j65PQjuMr_eKlsyUk0tP1RB83qquAXTQMouuCjx2iEqQYMIM6c3NhtWx
+````
