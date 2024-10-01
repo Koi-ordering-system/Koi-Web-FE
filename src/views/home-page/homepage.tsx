@@ -3,17 +3,10 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
-  useAuth,
   UserButton,
 } from "@clerk/clerk-react";
 
 const HomePage = () => {
-  const auth = useAuth();
-
-  auth.getToken().then((token) => {
-    console.log("Token: ", token);
-  });
-
   return (
     <div>
       <header>
