@@ -1,6 +1,13 @@
 # Stage 1: Base image with build tools
 FROM oven/bun:canary AS base
 
+ARG VITE_API_URL_BE
+ARG VITE_CLERK_PUBLISHABLE_KEY
+
+# Set the environment variables
+ENV VITE_API_URL_BE=$VITE_API_URL_BE
+ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 # Stage 2: Install dependencies
