@@ -5,8 +5,8 @@ ARG VITE_API_URL_BE
 ARG VITE_CLERK_PUBLISHABLE_KEY
 
 # Set the environment variables
-ENV VITE_API_URL_BE=$VITE_API_URL_BE
-ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_API_URL_BE=${VITE_API_URL_BE:-https://koi-api.persiehomeserver.com}
+ENV VITE_CLERK_PUBLISHABLE_KEY=${VITE_CLERK_PUBLISHABLE_KEY:-pk_test_c2hhcmluZy1jb2x0LTQxLmNsZXJrLmFjY291bnRzLmRldiQ}
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
