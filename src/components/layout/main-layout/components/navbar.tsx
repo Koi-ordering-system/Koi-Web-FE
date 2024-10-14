@@ -13,7 +13,7 @@ const Navbar = () => {
   const [currentMenu, setCurrentMenu] = useState<number>(1);
 
   return (
-    <div className="items-center justify-center hidden h-full gap-3 space-x-4 md:flex">
+    <div className="items-center justify-center hidden h-full gap-3 space-x-9 md:flex">
       {menu.map((item, index) => (
         <NavLink
           key={index}
