@@ -17,6 +17,7 @@ export * from "./pagination";
 export * from "./popover";
 export * from "./scroll-area";
 export * from "./select";
+export * from "./separator";
 export * from "./switch";
 export * from "./table";
 export * from "./tabs";
@@ -25,4 +26,4 @@ export * from "./toast";
 export * from "./toaster";
 export * from "./toggle";
 export * from "./tooltip";
-
+export * from "./resizable";

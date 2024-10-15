@@ -18,11 +18,11 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -31,11 +31,11 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -44,16 +44,14 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```
 
 ## Enviroment
 
-````
+```
 VITE_API_URL_BE=https://api.example.com
-VITE_DOMAIN_AUTH0=dev-f47t4m16xoeqzwvb.us.auth0.com
-VITE_CLIENT_ID_AUTH0=GrZbj9m8QOVY2uJn27zvfOGNd3CHp5ZS
-VITE_CLIENT_SECRET_AUTH0=Kr0k0tW2j65PQjuMr_eKlsyUk0tP1RB83qquAXTQMouuCjx2iEqQYMIM6c3NhtWx
-````
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_c2hhcmluZy1jb2x0LTQxLmNsZXJrLmFjY291bnRzLmRldiQ
+```
