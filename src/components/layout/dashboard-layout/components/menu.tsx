@@ -1,5 +1,6 @@
 import {
   Fish,
+  Layers,
   LayoutDashboard,
   LucideProps,
   MessageCircleMore,
@@ -22,6 +23,7 @@ const menu: MenuProps[] = [
   { name: "Koi", href: "/dashboard/koi", icon: Fish },
   { name: "Order", href: "/dashboard/order", icon: SquareMenu },
   { name: "Chatting", href: "/dashboard/chatting", icon: MessageCircleMore },
+  { name: "Species", href: "/dashboard/species", icon: Layers },
 ];
 
 const Menu = () => {

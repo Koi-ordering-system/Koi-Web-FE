@@ -7,32 +7,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui";
-import { FarmsResponse } from "@/domains/models/farms";
+import { KoisResponse } from "@/domains/models/kois";
 import { ColumnDef } from "@tanstack/react-table";
 import { Book, MoreHorizontal, Pencil, Trash } from "lucide-react";
 
-export const farmColumns: ColumnDef<FarmsResponse>[] = [
+export const koiColumns: ColumnDef<KoisResponse>[] = [
   {
-    header: "ID",
-    
-  },
-  {
-    header: "Name",
     accessorKey: "name",
+    header: "Name",
   },
   {
-    header: "Owner",
-    accessorKey: "owner",
+    accessorKey: "minSize",
+    header: "Min Size",
   },
   {
-    header: "Address",
-    accessorKey: "address",
+    accessorKey: "maxSize",
+    header: "Max Size",
   },
   {
-    header: "Rating",
-    accessorKey: "rating",
+    accessorKey: "price",
+    header: "Price",
   },
-
   {
     id: "actions",
     cell: (row) => {
