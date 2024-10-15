@@ -1,6 +1,5 @@
 import { axiosInstance } from "@/configs";
-import { SpeciesBody } from "@/domains/models/species/species-body.request";
-import { SpeciesParams } from "@/domains/models/species/species-params.quest";
+import { SpeciesBody, SpeciesParams } from "@/domains/models/species";
 
 export const speciesApi = {
   getSpeciesList: async (options: SpeciesParams) => {
