@@ -1,10 +1,5 @@
 import assert from "@/assets";
-import {
-  ResizablePanelGroup,
-  ResizablePanel,
-  ResizableHandle,
-  Button,
-} from "@/components/ui";
+import { Button } from "@/components/ui";
 import useSequentialReveal from "@/hooks/use-sequential-reveal";
 import { ArrowRight } from "lucide-react";
 
