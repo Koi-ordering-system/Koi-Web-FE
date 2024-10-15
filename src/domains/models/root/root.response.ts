@@ -5,8 +5,10 @@ export interface RootResponse<T> {
 }
 
 export interface Data<T> {
-  pageIndex: number;
-  pageSize: number;
+  items: T;
+  pageNumber: number;
   totalPages: number;
-  value: T;
+  totalCount: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
 }

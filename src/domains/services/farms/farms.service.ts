@@ -1,20 +1,24 @@
 import { axiosInstance } from "@/configs";
-import { FarmsBody, FarmsParams } from "@/domains/models/farms";
+import { FarmsBody, FarmsParams, FarmsResponse } from "@/domains/models/farms";
+import { Data, RootResponse } from "@/domains/models/root/root.response";
 
 import axios from "axios";
 
 export const farmApi = {
-  getFarmList: async (options?: FarmsParams) => {
-    await axiosInstance
-      .get("/api/farms", { params: options })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        if (axios.isAxiosError(error)) {
-          return error.response?.data;
-        }
+  getFarmList: async (
+    options?: FarmsParams
+  ): Promise<RootResponse<Data<FarmsResponse[]>> | undefined> => {
+    try {
+      const response = await axiosInstance.get("/api/farms", {
+        params: options,
       });
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
+    return undefined;
   },
 
   getFarmDetail: async (id: string) => {
