@@ -17,6 +17,7 @@ import ServicePage from "@/views/main-layout/service-page/service-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
 import OrderPage from "@/views/dashboard-layout/order-page/order-page";
 import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
+import SpeciesPage from "@/views/dashboard-layout/species-page/species-page";
 
 /*eslint-disable*/
 const RootLayout = lazy(() => import("@/components/layout/main-layout"));
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "chatting",
         element: <ChatPage />,
+      },
+      {
+        path: "species",
+        element: <SpeciesPage />,
       },
     ],
   },

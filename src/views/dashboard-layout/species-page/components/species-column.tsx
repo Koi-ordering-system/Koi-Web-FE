@@ -7,32 +7,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui";
-import { FarmsResponse } from "@/domains/models/farms";
+import { SpeciesResponse } from "@/domains/models/species";
 import { ColumnDef } from "@tanstack/react-table";
-import { Book, MoreHorizontal, Pencil, Trash } from "lucide-react";
+import { MoreHorizontal, Book, Pencil, Trash } from "lucide-react";
 
-export const farmColumns: ColumnDef<FarmsResponse>[] = [
-  {
-    header: "ID",
-    
-  },
+export const SpeciesColumn: ColumnDef<SpeciesResponse>[] = [
   {
     header: "Name",
     accessorKey: "name",
   },
-  {
-    header: "Owner",
-    accessorKey: "owner",
-  },
-  {
-    header: "Address",
-    accessorKey: "address",
-  },
-  {
-    header: "Rating",
-    accessorKey: "rating",
-  },
-
   {
     id: "actions",
     cell: (row) => {

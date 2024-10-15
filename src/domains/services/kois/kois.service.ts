@@ -1,11 +1,26 @@
 import { axiosInstance } from "@/configs";
+import { KoisResponse } from "@/domains/models/kois";
 import { KoisBody } from "@/domains/models/kois/kois-body.request";
 import { KoisParams } from "@/domains/models/kois/kois-params.request";
+import { Data, RootResponse } from "@/domains/models/root/root.response";
+import axios from "axios";
 
 export const KoisApi = {
-  getKoisList: async (options?: KoisParams) => {
-    const response = await axiosInstance.get("/api/kois", { params: options });
-    return response.data;
+  getKoisList: async (
+    options?: KoisParams
+  ): Promise<RootResponse<Data<KoisResponse[]>> | undefined> => {
+    try {
+      const response = await axiosInstance.get("/api/kois", {
+        params: options,
+      });
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
+
+    return undefined;
   },
 
   getKoiDetail: async (id: string) => {

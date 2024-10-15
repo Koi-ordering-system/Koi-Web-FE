@@ -5,6 +5,7 @@ import React from "react";
 
 interface FarmTableProps {
   data: FarmsResponse[];
+  isLoading: boolean;
 }
 
 const FarmTable: React.FC<FarmTableProps> = ({ data }) => {
