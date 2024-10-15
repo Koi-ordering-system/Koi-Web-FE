@@ -1,30 +1,71 @@
 import { axiosInstance } from "@/configs";
-import { FarmsBody } from "@/domains/models/farms/farms-body.request";
-import { FarmsParams } from "@/domains/models/farms/farms-params.request";
+import { FarmsBody, FarmsParams } from "@/domains/models/farms";
+
+import axios from "axios";
 
 export const farmApi = {
   getFarmList: async (options?: FarmsParams) => {
-    const response = await axiosInstance.get("/api/farms", { params: options });
-    return response.data;
+    await axiosInstance
+      .get("/api/farms", { params: options })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          return error.response?.data;
+        }
+      });
   },
 
   getFarmDetail: async (id: string) => {
-    const response = await axiosInstance.get(`/api/farms/${id}`);
-    return response.data;
+    await axiosInstance
+      .get(`/api/farms/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          return error.response?.data;
+        }
+      });
   },
 
   createFarm: async (data: FarmsBody) => {
-    const response = await axiosInstance.post("/api/farms", data);
-    return response.data;
+    await axiosInstance
+      .post("/api/farms", data)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          return error.response?.data;
+        }
+      });
   },
 
   updateFarm: async (id: string, data: FarmsBody) => {
-    const response = await axiosInstance.put(`/api/farms/${id}`, data);
-    return response.data;
+    await axiosInstance
+      .put(`/api/farms/${id}`, data)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          return error.response?.data;
+        }
+      });
   },
 
   deleteFarm: async (id: string) => {
-    const response = await axiosInstance.delete(`/api/farms/${id}`);
-    return response.data;
+    await axiosInstance
+      .delete(`/api/farms/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          return error.response?.data;
+        }
+      });
   },
 };

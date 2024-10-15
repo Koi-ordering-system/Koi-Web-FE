@@ -1,21 +1,12 @@
 export interface RootResponse<T> {
-  value: Value<T> | T;
-  status: number;
-  isSuccess: boolean;
-  successMessage: string;
-  correlationId: string;
-  location: string;
-  errors: Errors[];
-  validationErrors: ValidationErrors[];
+  succeeded: boolean;
+  message: null;
+  data: T;
 }
 
-export interface Value<T> {
-  data: T;
+export interface Data<T> {
   pageIndex: number;
   pageSize: number;
   totalPages: number;
+  value: T;
 }
-
-export interface Errors {}
-
-export interface ValidationErrors {}

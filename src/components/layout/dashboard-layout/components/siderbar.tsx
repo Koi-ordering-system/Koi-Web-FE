@@ -1,3 +1,4 @@
+import assert from "@/assets";
 import Menu from "@/components/layout/dashboard-layout/components/menu";
 import {
   Avatar,
@@ -13,13 +14,13 @@ const SiderBar = () => {
   const { signOut } = useAuth();
 
   return (
-    <aside className="flex flex-col justify-between h-screen px-6 py-6 bg-secondary">
+    <aside className="flex flex-col justify-between h-screen px-10 py-4 bg-secondary">
       <div className="space-y-6">
         {/* Logo */}
         <div className="flex items-center justify-center gap-3">
           <Avatar className="border size-12">
             <AvatarFallback className="text-xs font-medium">KOI</AvatarFallback>
-            <AvatarImage src={""} alt="logo" />
+            <AvatarImage src={assert.logo} alt="logo" />
           </Avatar>
           <div className="flex flex-col">
             <span className="text-xl font-semibold">KOI</span>
@@ -34,7 +35,7 @@ const SiderBar = () => {
       </div>
 
       {/* Logout */}
-      <Button className="space-x-2" variant="outline" onClick={() => signOut()}>
+      <Button className="space-x-2" onClick={() => signOut()}>
         <LogOut className="size-4" />
         <span>Logout</span>
       </Button>
