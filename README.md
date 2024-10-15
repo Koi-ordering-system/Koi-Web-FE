@@ -52,6 +52,6 @@ export default tseslint.config({
 ## Enviroment
 
 ```
-VITE_API_URL_BE=https://api.example.com
+VITE_API_URL_BE=https://koi-api.persiehomeserver.com
 VITE_CLERK_PUBLISHABLE_KEY=pk_test_c2hhcmluZy1jb2x0LTQxLmNsZXJrLmFjY291bnRzLmRldiQ
 ```
