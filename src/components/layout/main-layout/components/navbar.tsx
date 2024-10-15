@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 const menu = [
   { name: "Home", href: "/" },
@@ -10,20 +10,21 @@ const menu = [
 ];
 
 const Navbar = () => {
-  const [currentMenu, setCurrentMenu] = useState<number>(1);
+  const [currentMenu, setCurrentMenu] = useState<string>("");
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+    setCurrentMenu(currentPath);
+  }, [location.pathname]);
 
   return (
     <div className="items-center justify-center hidden h-full gap-3 space-x-9 md:flex">
       {menu.map((item, index) => (
-        <NavLink
-          key={index}
-          to={item.href}
-          className="font-bold text-center"
-          onClick={() => setCurrentMenu(index + 1)}
-        >
+        <NavLink key={index} to={item.href} className="font-bold text-center">
           <span
             className={`hover:text-accent-foreground/60 ${
-              currentMenu === index + 1 ? "text-primary " : ""
+              currentMenu === item.href ? "text-primary" : ""
             }`}
           >
             {item.name}
