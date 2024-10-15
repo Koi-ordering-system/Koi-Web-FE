@@ -7,6 +7,7 @@ import Login from "@/views/auth-page/sign-in/login";
 import Register from "@/views/auth-page/sign-up/register";
 import FarmDetail from "@/views/main-layout/farm-page/farm-detail";
 import FarmPage from "@/views/main-layout/farm-page/farm-page";
+import FarmManage from "@/views/dashboard-layout/farm-page/farm-page";
 import HomePage from "@/views/main-layout/home-page/home-page";
 import KoiDetail from "@/views/main-layout/koi-page/koi-detail";
 import KoiPage from "@/views/main-layout/koi-page/koi-page";
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "farm",
-        element: <FarmPage />,
+        element: <FarmManage />,
       },
       {
         path: "koi",

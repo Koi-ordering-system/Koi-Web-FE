@@ -38,7 +38,7 @@ const FishBento = () => {
         <div className="col-start-3 row-span-2 row-start-1 shadow-xl ">
           <img src={assert.fish} alt="fish" className=" size-full rounded-xl" />
         </div>
-        <Button className="absolute z-10 space-x-2 -translate-x-1/2 bottom-6 left-1/2">
+        <Button className="absolute space-x-2 -translate-x-1/2 bottom-6 left-1/2">
           <span>See More</span>
           <ArrowRight className="size-5" />
         </Button>
