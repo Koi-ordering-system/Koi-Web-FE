@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="sticky top-0 z-10 w-full shadow-md bg-accent text-accent-foreground shadow-muted-foreground">
+    <div className="sticky top-0 z-10 w-full shadow-custom bg-accent text-accent-foreground">
       <main className="container flex items-center justify-between py-4">
         <div
           className="flex items-center justify-center gap-2 hover:cursor-pointer"

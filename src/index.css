@@ -94,3 +94,27 @@
     @apply px-1 font-normal rounded bg-secondary text-secondary-foreground;
   }
 }
+
+@font-face {
+  font-family: "Merienda", cursive;
+  src: url("assets/font/Merienda/Merienda-VariableFont_wght.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Work Sans", sans-serif;
+  src: url("assets/font/Work_Sans/WorkSans-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Faustina", serif;
+  src: url("assets/font/Faustina/Faustina-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  font-family: "Glancyr-Light", sans-serif;
+  font-weight: 300;
+}
