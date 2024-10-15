@@ -30,16 +30,16 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="border rounded-md">
-        <Table className="min-w-full divide-y divide-gray-200">
+    <div className="w-full overflow-x-auto border rounded-md">
+      <div className="">
+        <Table className="min-w-full divide-y divide-gray-200 ">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase text-foreground"
                   >
                     {header.isPlaceholder
                       ? null
@@ -57,12 +57,12 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className="bg-white divide-y divide-gray-200"
+                  className="divide-y divide-gray-200 bg-muted"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="px-6 py-4 text-sm text-gray-900 whitespace-nowrap"
+                      className="px-6 py-4 text-sm text-foreground whitespace-nowrap"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
