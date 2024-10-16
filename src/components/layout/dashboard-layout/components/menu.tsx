@@ -7,7 +7,7 @@ import {
   SquareMenu,
   Tractor,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 interface MenuProps {
   name: string;
@@ -27,13 +27,19 @@ const menu: MenuProps[] = [
 ];
 
 const Menu = () => {
+  const location = useLocation();
+
   return (
     <div className="space-y-3">
       {menu.map((item, index) => (
         <NavLink
           to={item.href}
           key={index}
-          className={`flex gap-2 rounded-lg hover:bg-primary/30 hover:text-foreground transition-colors duration-300 py-2 px-4`}
+          className={`flex gap-2 rounded-lg py-2 px-4 transition-colors duration-300 ${
+            location.pathname === item.href
+              ? "bg-primary/50 text-foreground"
+              : "hover:bg-primary/30 hover:text-foreground"
+          }`}
         >
           <item.icon />
           <span>{item.name}</span>

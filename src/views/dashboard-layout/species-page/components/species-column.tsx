@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui";
 import { SpeciesResponse } from "@/domains/models/species";
+import FormatUtils, { FormatType } from "@/lib/format";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal, Book, Pencil, Trash } from "lucide-react";
 
@@ -17,10 +18,26 @@ export const SpeciesColumn: ColumnDef<SpeciesResponse>[] = [
     accessorKey: "name",
   },
   {
+    header: "Description",
+    accessorKey: "description",
+  },
+  {
+    header: "Year of Discovery",
+    accessorKey: "yearOfDiscovery",
+  },
+  {
+    header: "Created At",
+    accessorKey: "createdAt",
+    cell: ({ row }) => {
+      return FormatUtils.formatISOString(
+        row.original.createdAt,
+        FormatType.DATETIME
+      );
+    },
+  },
+  {
     id: "actions",
-    cell: (row) => {
-      console.log(row);
-
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger>

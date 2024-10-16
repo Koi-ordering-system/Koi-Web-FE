@@ -30,9 +30,7 @@ export const koiColumns: ColumnDef<KoisResponse>[] = [
   },
   {
     id: "actions",
-    cell: (row) => {
-      console.log(row);
-
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger>

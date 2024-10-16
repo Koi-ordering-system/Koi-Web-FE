@@ -14,7 +14,7 @@ const SiderBar = () => {
   const { signOut } = useAuth();
 
   return (
-    <aside className="flex flex-col justify-between h-screen px-10 py-4 bg-secondary">
+    <aside className="flex flex-col justify-between h-auto px-10 py-4 bg-secondary">
       <div className="space-y-6">
         {/* Logo */}
         <div className="flex items-center justify-center gap-3">
