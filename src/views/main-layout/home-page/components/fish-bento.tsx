@@ -2,9 +2,11 @@ import assert from "@/assets";
 import { Button } from "@/components/ui";
 import useSequentialReveal from "@/hooks/use-sequential-reveal";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const FishBento = () => {
   const visiable = useSequentialReveal(2);
+  const navigation = useNavigate()
   return (
     <section className="container my-32">
       {visiable > 0 && (
@@ -38,7 +40,9 @@ const FishBento = () => {
         <div className="col-start-3 row-span-2 row-start-1 shadow-xl ">
           <img src={assert.fish} alt="fish" className=" size-full rounded-xl" />
         </div>
-        <Button className="absolute space-x-2 -translate-x-1/2 bottom-6 left-1/2">
+        <Button className="absolute space-x-2 -translate-x-1/2 bottom-6 left-1/2"
+          onClick={() => navigation('/koi')}
+        >
           <span>See More</span>
           <ArrowRight className="size-5" />
         </Button>

@@ -1,0 +1,213 @@
+.shopping-cart{
+    margin-top: 40px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.shopping-cart .title{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5%;
+    margin-bottom: 20px;
+}
+.shopping-cart .title p{
+    width: 5%;
+    color: red;
+    font-family: "Merienda", cursive;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: right;
+}
+.shopping-cart .title div{
+    width: 94%;
+    margin-left: 1%;
+    height: 1px;
+    border: 0.5px solid #FB7A31;
+    margin-top: 25px;
+}
+
+
+.shopping-cart .fish-shopping-list{
+    width: 100%;
+    padding: 0 10%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fish-shopping-list .fish-shopping-item{
+    width: 100%;
+    padding: 2% 0;
+    border-bottom: 1px solid rgb(206, 206, 206);
+    display: flex;
+    justify-content: center;
+}
+
+.fish-shopping-item .fish-shopping-item-checkbox{
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.fish-shopping-item .fish-shopping-item-img {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+.fish-shopping-item .fish-shopping-item-img img{
+    width: 110px;
+    height: 170px;
+}
+
+
+.fish-shopping-item .fish-shopping-item-content{
+    width: 85%;
+    padding-left: 2%;
+    position: relative;
+}
+.fish-shopping-item-content .code{
+    font-family: "Work Sans", sans-serif;
+    font-size: 13px;
+    margin-bottom: 0
+}
+.fish-shopping-item-content .name{
+    font-family: "Merienda", cursive;
+    font-size: 20px;
+    margin-bottom: 10px
+}
+.fish-shopping-item-content .info{
+    font-family: "Faustina", serif;
+    font-size: 15px;
+    margin-bottom: 5px
+}
+.fish-shopping-item-content .info strong{
+    font-weight: bold;
+}
+
+.fish-shopping-item-content .gender{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.fish-shopping-item-content .gender img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+.fish-shopping-item-content .color{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+/* .fish-shopping-item-content .color p{
+    font-family: "Faustina", serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 5%;
+} */
+.fish-shopping-item-content .color-item{
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: 1px solid black;
+    margin: 5px 5px 0 5px;
+}
+.fish-shopping-item-content .color-item.red{
+    background-color: red;
+}
+.fish-shopping-item-content .color-item.white{
+    background-color: white;
+}
+.fish-shopping-item-content .color-item.black{
+    background-color: black;
+}
+.fish-shopping-item-content .color-item.blue{
+    background-color: blue;
+}
+
+.fish-shopping-item-content .delete-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding:  0.5%;
+    border-radius: 5px;
+}
+.fish-shopping-item-content .delete-btn:hover{
+    background-color: rgb(222, 222, 222);
+}
+.fish-shopping-item-content .delete-btn .trash-img{
+    width: 25px;
+    height: 25px;
+}
+
+
+.fish-shopping-item-content .price{
+    font-family: "Faustina", serif;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0
+}
+
+
+.shopping-cart .total-price{
+    width: 85%;
+    padding: 1% 2%;
+    margin-top: 20px;
+    background-color: #F9FAFB;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.total-price .left{
+    width: 33%;
+    display: flex;
+}
+.total-price .left input{
+    margin-right: 3%;
+}
+.total-price .left p{
+    margin-bottom: 0;
+    font-family: "Faustina", serif;
+    font-size: 17px;
+}
+
+.total-price .middle{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+}
+.total-price .middle p{
+    width: 100%;
+    margin-bottom: 0;
+    font-family: "Faustina", serif;
+    font-size: 17px;
+    text-align: center;
+}
+.total-price .middle p strong{
+    font-weight: bold;
+    margin-left: 12%;
+}
+
+.total-price .right{
+    width: 33%;
+    display: flex;
+    justify-content: flex-end;
+}
+.total-price .right button{
+    width: 70%;
+    padding: 2%;
+    background-color: #FB7A31;
+    border-radius: 15px;
+    font-family: "Faustina", serif;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+}

@@ -17,7 +17,9 @@ const Profile = () => {
       </SignedOut>
       <SignedIn>
         <div className="flex items-center justify-center gap-3">
-          <Button variant="ghost">
+          <Button variant="ghost" 
+            onClick={() => navigator('/shopping-cart')}
+          >
             <ShoppingCart className="size-5" />
             <span className="hidden font-semibold">Shop</span>
           </Button>

@@ -12,9 +12,9 @@ const HeroContent = () => {
       <img
         src={assert.hero}
         alt="hero"
-        className="object-cover w-screen h-[650px] blur-lg"
+        className="object-cover w-screen h-[650px] blur-sm"
       />
-      <div className="container absolute inset-0 flex flex-row items-center justify-between text-white">
+      <div className="container absolute inset-0 flex flex-row items-center justify-between text-white px-16">
         <div>
           {visiable > 0 && (
             <h1 className="text-5xl font-bold text-destructive animate-float-in">
