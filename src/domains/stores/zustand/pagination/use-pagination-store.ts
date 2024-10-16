@@ -13,7 +13,12 @@ interface PaginationState {
 }
 
 const usePaginationStore = create<PaginationState>((set) => ({
-  pagination: {},
+  pagination: {
+    default: {
+      pageSize: 10,
+      pageIndex: 1,
+    },
+  },
 
   setPagination: (key, pageSize, pageIndex) =>
     set((state) => ({

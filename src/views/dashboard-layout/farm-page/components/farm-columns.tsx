@@ -11,10 +11,15 @@ import { FarmsResponse } from "@/domains/models/farms";
 import { ColumnDef } from "@tanstack/react-table";
 import { Book, MoreHorizontal, Pencil, Trash } from "lucide-react";
 
-export const farmColumns: ColumnDef<FarmsResponse>[] = [
+interface FarmColumnsProps {
+  getId: (id: string) => void;
+}
+
+export const farmColumns = ({
+  getId,
+}: FarmColumnsProps): ColumnDef<FarmsResponse>[] => [
   {
     header: "ID",
-    
   },
   {
     header: "Name",
@@ -35,9 +40,7 @@ export const farmColumns: ColumnDef<FarmsResponse>[] = [
 
   {
     id: "actions",
-    cell: (row) => {
-      console.log(row);
-
+    cell: ({ row }) => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -47,7 +50,10 @@ export const farmColumns: ColumnDef<FarmsResponse>[] = [
             <DropdownMenuLabel>Action</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => getId(row.original.id)}
+              >
                 <Book className="size-4" />
                 <span>Detail</span>
               </DropdownMenuItem>
