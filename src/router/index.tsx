@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         element: <KoiManage />,
       },
       {
-        path: "/koi/:id",
+        path: "koi/:id",
         element: <KoiManageDetail />,
       },
       {
