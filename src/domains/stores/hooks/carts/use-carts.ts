@@ -7,7 +7,7 @@ interface CardHook {}
 export const useCards = (): CardHook => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QueryKey.LIST_CARTS],
-    queryFn: () => apiCart.getCartList(),
+    queryFn: () => apiCart.getưCartList(),
   });
 
   return {

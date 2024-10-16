@@ -6,6 +6,7 @@ import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -40,28 +41,30 @@ const MenuProfile = () => {
             <AvatarImage src={user?.imageUrl} alt={user?.username || ""} />
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="w-[200px]">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem onClick={handleToggle}>
+              {!isDarkMode ? (
+                <Sun className="mr-2 size-5" />
+              ) : (
+                <Moon className="mr-2 size-5" />
+              )}
+              <Label>Theme mode</Label>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
 
-          <DropdownMenuItem onClick={handleToggle}>
-            {!isDarkMode ? (
-              <Sun className="mr-2 size-5" />
-            ) : (
-              <Moon className="mr-2 size-5" />
-            )}
-            <Label>Theme mode</Label>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>
+              <User className="mr-2 size-5" />
+              <Label>Profile</Label>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+              <LayoutDashboard className="mr-2 size-5" />
+              <Label>Dashboard</Label>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
 
-          <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>
-            <User className="mr-2 size-5" />
-            <Label>Profile</Label>
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate("/dashboard")}>
-            <LayoutDashboard className="mr-2 size-5" />
-            <Label>Dashboard</Label>
-          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => signOut()}>
             <LogOut className="mr-2 size-5" />
