@@ -13,13 +13,41 @@ import { Book, MoreHorizontal, Pencil, Trash } from "lucide-react";
 
 interface FarmColumnsProps {
   getId: (id: string) => void;
+  editData: (data: FarmsResponse) => void;
+  deleteData: (id: string) => void;
 }
 
 export const farmColumns = ({
   getId,
+  editData,
+  deleteData,
 }: FarmColumnsProps): ColumnDef<FarmsResponse>[] => [
   {
-    header: "ID",
+    header: "No.",
+    accessorFn: (_row, index) => index + 1,
+  },
+  {
+    header: "Image",
+    accessorKey: "farmImages",
+    cell: ({ row }) => {
+      const image = row.original.farmImages;
+
+      if (image.length > 0) {
+        return (
+          <img
+            src={image[0].url}
+            alt={image[0].id}
+            className="object-cover rounded-lg size-20"
+          />
+        );
+      }
+
+      return (
+        <div className="grid rounded-lg size-20 place-content-center bg-muted-foreground text-background">
+          No Image
+        </div>
+      );
+    },
   },
   {
     header: "Name",
@@ -57,11 +85,21 @@ export const farmColumns = ({
                 <Book className="size-4" />
                 <span>Detail</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => {
+                  editData(row.original);
+                }}
+              >
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => {
+                  deleteData(row.original.id);
+                }}
+              >
                 <Trash className="size-4" />
                 <span>Delete</span>
               </DropdownMenuItem>

@@ -23,9 +23,17 @@ export const KoisApi = {
     return undefined;
   },
 
-  getKoiDetail: async (id: string) => {
-    const response = await axiosInstance.get(`/api/kois/${id}`);
-    return response.data;
+  getKoiDetail: async (
+    id: string
+  ): Promise<RootResponse<Data<KoisResponse>> | undefined> => {
+    try {
+      const response = await axiosInstance.get(`/api/kois/${id}`);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
   },
 
   createKoi: async (data: KoisBody) => {

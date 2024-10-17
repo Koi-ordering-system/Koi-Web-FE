@@ -15,10 +15,12 @@ import UseFarmsQuery from "@/domains/stores/hooks/farms/use-farms";
 import usePaginationStore from "@/domains/stores/zustand/pagination/use-pagination-store";
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
 import FarmTable from "@/views/dashboard-layout/farm-page/components/farm-table";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FarmPage = () => {
-  const { search } = useSearchStore();
+  const navigate = useNavigate();
+  const { search, setSearch } = useSearchStore();
   const { updatePageIndex, pagination, updatePageSize } = usePaginationStore();
 
   const options = useMemo(() => {
@@ -40,11 +42,29 @@ const FarmPage = () => {
     options,
   });
 
+  // usePageLeave(() => {
+  //   if (pagination["farm"]?.pageIndex !== 1) {
+  //     updatePageIndex("farm", 1);
+  //   }
+  //   if (search["farm"]?.searchValue !== "") {
+  //     setSearch("farm", "");
+  //   }
+  // });
+
+  useEffect(() => {
+    if (pagination["farm"]?.pageIndex !== 1) {
+      updatePageIndex("farm", 1);
+    }
+    if (search["farm"]?.searchValue !== "") {
+      setSearch("farm", "");
+    }
+  }, []);
+
   return (
     <div className="px-5 py-10 mx-auto">
       <div className="flex justify-between mb-5">
         <Search placeholder="Search farm" keyObject="farm" />
-        <Button>
+        <Button onClick={() => navigate("create")}>
           <span className="text-sm">Create New Farm</span>
         </Button>
       </div>
