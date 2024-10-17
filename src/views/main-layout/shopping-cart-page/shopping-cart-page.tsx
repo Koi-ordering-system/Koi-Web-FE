@@ -6,6 +6,7 @@ import male from '../../../assets/images/fish/male.png';
 import female from '../../../assets/images/fish/female.png';
 import trash from '../../../assets/images/fish/trash-can.png';
 import { useNavigate } from 'react-router-dom';
+// import { useCarts } from '@/domains/stores/hooks/carts/use-carts';
 
 // Khai báo kiểu dữ liệu cho từng mục sản phẩm
 interface FishItem {
@@ -29,6 +30,8 @@ const ShoppingCart = () => {
         { id: 3, code: 'KGR31002', name: 'Showa Sanshoku', size: '12-15 cm', type: 'Marudo, Ogata', genderImg: male, color: ['black', 'red', 'white'], price: 37000000, img: koi_img },
         { id: 4, code: 'KGR31003', name: 'Shusui', size: '10-13 cm', type: 'Hiranshin, Dainichi', genderImg: female, color: ['blue', 'white'], price: 34000000, img: koi_img },
     ];
+
+
 
     // State để quản lý checkbox chọn tất cả và chọn từng item
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -72,6 +75,8 @@ const ShoppingCart = () => {
             setSelectAll(false);
         }
     }, [selectedItems, fishItems.length]);
+
+
 
     return (
         <div className="container shopping-cart">
