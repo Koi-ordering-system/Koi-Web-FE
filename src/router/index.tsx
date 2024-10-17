@@ -22,6 +22,7 @@ import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
 import ShoppingCart from "@/views/main-layout/shopping-cart-page/shopping-cart-page";
 import SpeciesPage from "@/views/dashboard-layout/species-page/species-page";
 import SpeciesDetail from "@/views/dashboard-layout/species-page/species-detail";
+import Checkout from "@/views/main-layout/checkout-page/checkout-page";
 
 /*eslint-disable*/
 const RootLayout = lazy(() => import("@/components/layout/main-layout"));
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         path: "shopping-cart",
         element: <ShoppingCart />,
       },
+      {
+        path: "checkout",
+        element: <Checkout/>
+      }
     ],
   },
   {

@@ -5,6 +5,7 @@ import koi_img from '../../../assets/images/fish/koi-shopping.png';
 import male from '../../../assets/images/fish/male.png';
 import female from '../../../assets/images/fish/female.png';
 import trash from '../../../assets/images/fish/trash-can.png';
+import { useNavigate } from 'react-router-dom';
 
 // Khai báo kiểu dữ liệu cho từng mục sản phẩm
 interface FishItem {
@@ -20,6 +21,7 @@ interface FishItem {
 }
 
 const ShoppingCart = () => {
+    const navigator = useNavigate()
     // Danh sách các sản phẩm
     const fishItems: FishItem[] = [
         { id: 1, code: 'KGR30999', name: 'Ginrin Kohaku', size: '10-13 cm', type: 'Hiranshin, Marudo, Ogata', genderImg: male, color: ['red', 'white'], price: 36000000, img: koi_img },
@@ -130,7 +132,7 @@ const ShoppingCart = () => {
                     <p>Total: <strong>{calculateTotalPrice().toLocaleString()} VND</strong></p>
                 </div>
                 <div className="right">
-                    <button>Checkout</button>
+                    <button onClick={() => navigator('/checkout')}>Checkout</button>
                 </div>
             </div>
         </div>

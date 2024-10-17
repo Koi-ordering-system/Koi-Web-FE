@@ -101,17 +101,26 @@
   font-weight: 500;
   font-style: normal;
 }
+.font-merienda {
+  font-family: "Merienda", cursive;
+}
 @font-face {
   font-family: "Work Sans", sans-serif;
   src: url("assets/font/Work_Sans/WorkSans-Italic-VariableFont_wght.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
+.font-worksans{
+  font-family: "Work Sans", sans-serif;
+}
 @font-face {
   font-family: "Faustina", serif;
   src: url("assets/font/Faustina/Faustina-Italic-VariableFont_wght.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
+}
+.font-faustina {
+  font-family: "Faustina", serif;
 }
 
 body {
