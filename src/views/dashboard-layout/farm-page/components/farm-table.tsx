@@ -16,9 +16,26 @@ const FarmTable: React.FC<FarmTableProps> = ({ data }) => {
     navigation(`/dashboard/farm/${id}`);
   };
 
+  const handleDelete = (id: string) => {
+    console.log(id);
+  };
+
+  const handleEdit = (data: FarmsResponse) => {
+    console.log(data);
+    navigation(`${data.id}/edit`, { state: data });
+    return;
+  };
+
   return (
     <div>
-      <DataTable columns={farmColumns({ getId: handleGetId })} data={data} />
+      <DataTable
+        columns={farmColumns({
+          getId: handleGetId,
+          deleteData: handleDelete,
+          editData: handleEdit,
+        })}
+        data={data}
+      />
     </div>
   );
 };

@@ -40,6 +40,15 @@ const KoiPage = () => {
     options,
   });
 
+  // usePageLeave(() => {
+  //   if (pagination["kois"]?.pageIndex !== 1) {
+  //     updatePageIndex("kois", 1);
+  //   }
+  //   if (search["kois"]?.searchValue !== "") {
+  //     setSearch("kois", "");
+  //   }
+  // });
+
   return (
     <div className="px-5 py-10 mx-auto">
       <div className="flex justify-between mb-5">

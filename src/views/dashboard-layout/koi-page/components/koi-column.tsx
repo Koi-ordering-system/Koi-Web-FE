@@ -11,7 +11,25 @@ import { KoisResponse } from "@/domains/models/kois";
 import { ColumnDef } from "@tanstack/react-table";
 import { Book, MoreHorizontal, Pencil, Trash } from "lucide-react";
 
-export const koiColumns: ColumnDef<KoisResponse>[] = [
+interface KoiColumnProps {
+  getId: (id: string) => void;
+  editData: (data: KoisResponse) => void;
+  deleteData: (id: string) => void;
+}
+
+export const koiColumns = ({
+  getId,
+  editData,
+  deleteData,
+}: KoiColumnProps): ColumnDef<KoisResponse>[] => [
+  {
+    accessorFn: (_row, index) => index + 1,
+    header: "No.",
+  },
+  {
+    header: "Image",
+    accessorKey: "",
+  },
   {
     accessorKey: "name",
     header: "Name",
@@ -30,7 +48,9 @@ export const koiColumns: ColumnDef<KoisResponse>[] = [
   },
   {
     id: "actions",
-    cell: () => {
+    cell: ({ row }) => {
+      const koi = row.original;
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -40,15 +60,24 @@ export const koiColumns: ColumnDef<KoisResponse>[] = [
             <DropdownMenuLabel>Action</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => getId(koi.id)}
+              >
                 <Book className="size-4" />
                 <span>Detail</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => editData(koi)}
+              >
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => deleteData(koi.id)}
+              >
                 <Trash className="size-4" />
                 <span>Delete</span>
               </DropdownMenuItem>
