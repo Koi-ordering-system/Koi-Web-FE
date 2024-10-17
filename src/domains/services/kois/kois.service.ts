@@ -25,7 +25,7 @@ export const KoisApi = {
 
   getKoiDetail: async (
     id: string
-  ): Promise<RootResponse<Data<KoisResponse>> | undefined> => {
+  ): Promise<RootResponse<KoisResponse> | undefined> => {
     try {
       const response = await axiosInstance.get(`/api/kois/${id}`);
       return response.data;

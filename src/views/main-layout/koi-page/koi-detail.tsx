@@ -1,42 +1,62 @@
 import { ShoppingCart } from "lucide-react";
 import KoiBreadcumb from "./components/koi-breadcumb";
 import { Button, Separator } from "@/components/ui";
+import { useParams } from "react-router-dom";
+import { useKoiDetail } from "@/domains/stores/hooks/kois/use-koi-detail";
+import { Loading } from "@/components/common";
 
 const KoiDetail = () => {
+  const { id } = useParams<string>();
+
+  if (!id) {
+    return <div>Invalid ID</div>;
+  }
+
+  const { data, isLoading, error } = useKoiDetail({ id });
+
+  if (isLoading) {
+    return <Loading/>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className="container flex flex-wrap gap-6 justify-center items-start p-8">
       {/* Breadcrumb */}
       <div className="w-full">
-        <KoiBreadcumb koiName="Ginrin Kohaku" />
+        <KoiBreadcumb koiName={data?.data.name} />
       </div>
 
-      <div className="w-4/5 grid grid-cols-2 gap-8">
+      <div className="w-4/5 grid grid-cols-2 gap-8 my-10">
         {/* Image Section */}
         <div className="w-[100%] flex justify-center">
           <img
-            src="https://selectivekoisales.co.uk/cdn/shop/files/Koi26_480x.jpg?v=1722428484"
+            src={data?.data.imageUrls}
             alt="Ginrin Kohaku"
             className="w-[50%] h-auto object-cover"
           />
         </div>
 
         {/* Details Section */}
-        <div className="w-[100%] ">
+        <div className="w-[100%]">
           {/* Title */}
           <h1 className="text-3xl font-bold text-orange-500">
-            KGR30999 - Ginrin Kohaku
+            {data?.data.name}
           </h1>
           <Separator className="w-[100%] my-4 border text-muted-foreground rounded-sm" />
           {/* Fish Details */}
           <div className="space-y-2">
             <p>
-              <span className="font-bold">Size:</span> 10 - 13 cm
+              <span className="font-bold">Size:</span> {data?.data.minSize} - {data?.data.maxSize} cm
             </p>
             <p>
               <span className="font-bold">Type:</span> Hiranshin, Marudo, Ogata
             </p>
             <p>
-              <span className="font-bold">Gender:</span> <span className="text-blue-500">♂️</span>
+              <span className="font-bold">Gender:</span> 
+              {data?.data.isMale? <span className="text-blue-500">♂️</span> : <span className="text-pink-400">♀️</span>}
             </p>
             <p>
               <span className="font-bold">Colour:</span>{" "}
@@ -44,15 +64,15 @@ const KoiDetail = () => {
               <span className="inline-block bg-white w-4 h-4 rounded-full border"></span>
             </p>
             <p>
-              <span className="font-bold">From farm:</span> Maruhiro Koi Farm
+              <span className="font-bold">From farm:</span> {data?.data.farms?.map(farm => farm.name).join(', ')}
             </p>
             <p>
-              <span className="font-bold">Born in:</span> 2023
+              <span className="font-bold">Description:</span> {data?.data.description}
             </p>
           </div>
           <Separator className="w-[100%] my-4 border text-muted-foreground rounded-sm" />
           {/* Price */}
-          <div className="text-3xl my-4 font-bold text-red-500">36.000.000 VND</div>
+          <div className="text-3xl my-4 font-bold text-red-500">{data?.data.price.toLocaleString('vi-VN')} VND</div>
 
           {/* Buttons */}
           <div className="flex gap-4">

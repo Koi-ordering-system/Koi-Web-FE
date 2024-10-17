@@ -4,6 +4,13 @@ export interface KoisResponse {
   description: string;
   minSize: number;
   maxSize: number;
+  farms: [
+    {
+      id: string;
+      name: string;
+    }
+  ]
   isMale: boolean;
   price: number;
+  imageUrls: string;
 }
