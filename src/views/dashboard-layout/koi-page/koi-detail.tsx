@@ -17,6 +17,7 @@ const KoiDetail = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+  console.log(data);
 
   return <div>KoiDetail</div>;
 };

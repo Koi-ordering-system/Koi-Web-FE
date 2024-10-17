@@ -14,7 +14,6 @@ import { FarmsParams } from "@/domains/models/farms";
 import UseFarmsQuery from "@/domains/stores/hooks/farms/use-farms";
 import usePaginationStore from "@/domains/stores/zustand/pagination/use-pagination-store";
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
-import usePageLeave from "@/hooks/use-page-leave";
 import FarmTable from "@/views/dashboard-layout/farm-page/components/farm-table";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
