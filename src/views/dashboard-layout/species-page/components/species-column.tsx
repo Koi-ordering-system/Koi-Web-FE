@@ -10,9 +10,21 @@ import {
 import { SpeciesResponse } from "@/domains/models/species";
 import FormatUtils, { FormatType } from "@/lib/format";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, Book, Pencil, Trash } from "lucide-react";
+import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 
-export const SpeciesColumn: ColumnDef<SpeciesResponse>[] = [
+interface SpeciesColumnProps {
+  editData: (data: SpeciesResponse) => void;
+  deleteData: (id: string) => void;
+}
+
+export const SpeciesColumn = ({
+  editData,
+  deleteData,
+}: SpeciesColumnProps): ColumnDef<SpeciesResponse>[] => [
+  {
+    header: "No.",
+    accessorFn: (_row, index) => index + 1,
+  },
   {
     header: "Name",
     accessorKey: "name",
@@ -37,7 +49,7 @@ export const SpeciesColumn: ColumnDef<SpeciesResponse>[] = [
   },
   {
     id: "actions",
-    cell: () => {
+    cell: ({ row }) => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -47,15 +59,17 @@ export const SpeciesColumn: ColumnDef<SpeciesResponse>[] = [
             <DropdownMenuLabel>Action</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="space-x-4">
-                <Book className="size-4" />
-                <span>Detail</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => editData(row.original)}
+              >
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="space-x-4">
+              <DropdownMenuItem
+                className="space-x-4"
+                onClick={() => deleteData(row.original.id)}
+              >
                 <Trash className="size-4" />
                 <span>Delete</span>
               </DropdownMenuItem>

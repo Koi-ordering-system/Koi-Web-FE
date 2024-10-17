@@ -35,7 +35,7 @@ const Menu = () => {
         <NavLink
           to={item.href}
           key={index}
-          className={`flex gap-2 rounded-lg py-2 px-4 transition-colors duration-300 ${
+          className={`flex gap-2 rounded-lg py-2 px-6 transition-colors duration-300 ${
             location.pathname === item.href
               ? "bg-primary/50 text-foreground"
               : "hover:bg-primary/30 hover:text-foreground"

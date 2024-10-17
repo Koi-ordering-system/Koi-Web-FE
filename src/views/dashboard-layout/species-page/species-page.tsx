@@ -37,6 +37,15 @@ const SpeciesPage = () => {
   }, [search, pagination]);
   const { data } = useSpeciesQuery({ options });
 
+  // usePageLeave(() => {
+  //   if (pagination["species"]?.pageIndex !== 1) {
+  //     updatePageIndex("species", 1);
+  //   }
+  //   if (search["species"]?.searchValue !== "") {
+  //     setSearch("species", "");
+  //   }
+  // });
+
   return (
     <div className="px-5 py-10 mx-auto">
       <div className="flex justify-between mb-5">

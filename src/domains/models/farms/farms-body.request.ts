@@ -3,6 +3,5 @@ export interface FarmsBody {
   owner?: string;
   address?: string;
   description?: string;
-  rating?: number;
   farmImages?: string[];
 }

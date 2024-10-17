@@ -5,10 +5,10 @@ export interface FarmsResponse {
   address: string;
   description: string;
   rating: number;
-  farmImages: FarmImages[];
+  farmImages: farmImages[];
 }
 
-interface FarmImages {
+interface farmImages {
   id: string;
   url: string;
 }
