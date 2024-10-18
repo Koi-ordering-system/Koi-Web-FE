@@ -1,9 +1,12 @@
 import {
   Fish,
+  FishIcon,
   Layers,
   LayoutDashboard,
   LucideProps,
   MessageCircleMore,
+  Plane,
+  SquareChartGantt,
   SquareMenu,
   Tractor,
 } from "lucide-react";
@@ -20,10 +23,11 @@ interface MenuProps {
 const menu: MenuProps[] = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Farm", href: "/dashboard/farm", icon: Tractor },
-  { name: "Koi", href: "/dashboard/koi", icon: Fish },
+  { name: "Species Koi", href: "/dashboard/species-koi", icon: FishIcon },
+  { name: "Traveling", href: "/dashboard/traveling", icon: Plane },
   { name: "Order", href: "/dashboard/order", icon: SquareMenu },
+  { name: "Feedback", href: "/dashboard/feedback", icon: SquareChartGantt },
   { name: "Chatting", href: "/dashboard/chatting", icon: MessageCircleMore },
-  { name: "Species", href: "/dashboard/species", icon: Layers },
 ];
 
 const Menu = () => {

@@ -18,7 +18,7 @@ export default {
     },
     extend: {
       boxShadow: {
-        'custom': '0px 2px 25px 0px rgba(0, 0, 0, 0.25)',
+        custom: "0px 2px 25px 0px rgba(0, 0, 0, 0.25)",
       },
       borderRadius: {
         lg: "var(--radius)",
