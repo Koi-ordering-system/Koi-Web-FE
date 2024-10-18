@@ -1,8 +1,8 @@
 import { Loading } from "@/components/common";
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import ErrorPage from "@/components/error-page";
 
+import ErrorPage from "@/components/error-page";
 import Login from "@/views/auth-page/sign-in/login";
 import Register from "@/views/auth-page/sign-up/register";
 import FarmDetail from "@/views/main-layout/farm-page/farm-detail";
@@ -12,7 +12,6 @@ import FarmManageDetail from "@/views/dashboard-layout/farm-page/farm-details";
 import FarmManageEdit from "@/views/dashboard-layout/farm-page/farm-edit";
 import HomePage from "@/views/main-layout/home-page/home-page";
 import HistoryPage from "@/views/main-layout/history-page/history-page";
-// import KoiManage from "@/views/dashboard-layout/koi-page/koi-page";
 import PolicyPage from "@/views/main-layout/policy-page/policy-page";
 import ServicePage from "@/views/main-layout/service-page/service-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
@@ -125,19 +124,19 @@ const router = createBrowserRouter([
         element: <ChatPage />,
       },
       {
-        path: "species",
+        path: "species-koi",
         element: <SpeciesPage />,
       },
       {
-        path: "species/:id",
+        path: "species-koi/:id",
         element: <SpeciesDetail />,
       },
       {
-        path: "species/:id/edit",
+        path: "species-koi/:id/edit",
         element: <SpeciesEdit />,
       },
       {
-        path: "species/create",
+        path: "species-koi/create",
         element: <SpeciesEdit />,
       },
     ],
