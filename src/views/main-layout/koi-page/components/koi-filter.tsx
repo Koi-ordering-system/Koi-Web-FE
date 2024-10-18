@@ -18,7 +18,7 @@ const KoiFilter = () => {
   const { data: species, isLoading: isSpeciesLoading } = useSpeciesQuery({});
 
   return (
-    <aside className="h-screen ">
+    <aside className=" ">
       <Search placeholder="Search" keyObject={"koi"} />
 
       {/* Price */}
