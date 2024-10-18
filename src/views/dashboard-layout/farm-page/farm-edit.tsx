@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import {
   Button,
@@ -18,9 +18,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FileInput } from "@/components/common/input-file";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import Show from "@/lib/show";
 
 const FarmEdit = () => {
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
   const { state: FarmState } = useLocation();
   const [images, setImages] = useState<string[]>([]);
 
@@ -57,28 +58,30 @@ const FarmEdit = () => {
         >
           <div className="col-span-4">
             <FileInput onFilesSelected={handleFilesSelected} />
-            {images.length > 0 ?? (
-              <div className="grid grid-cols-2 gap-4 mt-8 sm:grid-cols-3 md:grid-cols-4">
-                {images.map((image, index) => (
-                  <div key={index} className="relative group aspect-square">
-                    <img
-                      src={image}
-                      alt={`Uploaded ${index + 1}`}
-                      className="object-cover w-full h-full transition-transform rounded-md group-hover:scale-105"
-                    />
-                    <Button
-                      variant="destructive"
-                      size="icon"
-                      className="absolute transition-opacity opacity-0 top-2 right-2 group-hover:opacity-100"
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      <X className="w-4 h-4" />
-                      <span className="sr-only">Remove image</span>
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            )}
+            <Show>
+              <Show.When isTrue={images.length > 0}>
+                <div className="grid grid-cols-2 gap-4 mt-8 sm:grid-cols-3 md:grid-cols-4">
+                  {images.map((image, index) => (
+                    <div key={index} className="relative group aspect-square">
+                      <img
+                        src={image}
+                        alt={`Uploaded ${index + 1}`}
+                        className="object-cover w-full h-full transition-transform rounded-md group-hover:scale-105"
+                      />
+                      <Button
+                        variant="destructive"
+                        size="icon"
+                        className="absolute transition-opacity opacity-0 top-2 right-2 group-hover:opacity-100"
+                        onClick={() => handleRemoveImage(index)}
+                      >
+                        <X className="w-4 h-4" />
+                        <span className="sr-only">Remove image</span>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </Show.When>
+            </Show>
           </div>
           <div className="col-span-6 space-y-6">
             <div className="grid grid-cols-2 gap-4">

@@ -1,4 +1,5 @@
 export interface KoisResponse {
+  id: string;
   name: string;
   description: string;
   minSize: number;

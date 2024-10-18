@@ -1,7 +1,5 @@
 import {
-  Fish,
   FishIcon,
-  Layers,
   LayoutDashboard,
   LucideProps,
   MessageCircleMore,
