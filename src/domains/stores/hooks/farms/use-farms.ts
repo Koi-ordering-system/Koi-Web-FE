@@ -8,7 +8,7 @@ interface UseFarmsQuery {
 }
 
 const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: [QueryKey.LIST_FARMS, ...(options ? [options] : [])],
     queryFn: () => farmApi.getFarmList(options),
   });
@@ -17,6 +17,7 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
     data,
     isLoading,
     error,
+    refetch,
   };
 };
 

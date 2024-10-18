@@ -28,11 +28,26 @@ export const koiColumns = ({
   },
   {
     header: "Image",
-    accessorKey: "",
+    accessorKey: "imageUrls",
+    cell: ({ row }) => {
+      const koi = row.original;
+
+      return (
+        <img
+          src={koi.imageUrls[0]}
+          alt={koi.name}
+          className="object-cover rounded-lg size-20"
+        />
+      );
+    },
   },
   {
     accessorKey: "name",
     header: "Name",
+  },
+  {
+    header: "Species",
+    accessorKey: "speciesName",
   },
   {
     accessorKey: "minSize",
