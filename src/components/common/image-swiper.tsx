@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Navigation, Pagination, EffectFade } from "swiper/modules";
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 
 interface ImageSliderProps {
   imageUrls: string[];
@@ -14,19 +14,22 @@ interface ImageSliderProps {
 const ImageSlider = ({ imageUrls }: ImageSliderProps) => {
   return (
     <Swiper
-      spaceBetween={30}
-      effect={"fade"}
+      cssMode={true}
       navigation={true}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[EffectFade, Navigation, Pagination]}
-      className="min-w-full mySwiper"
+      pagination={true}
+      mousewheel={true}
+      keyboard={true}
+      modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+      className="mySwiper"
     >
       {imageUrls.map((url, index) => {
         return (
           <SwiperSlide key={index}>
-            <img src={url} alt={`Koi image ${index + 1}`} />
+            <img
+              src={url}
+              alt={`Koi image ${index + 1}`}
+              className="rounded-lg size-96"
+            />
           </SwiperSlide>
         );
       })}

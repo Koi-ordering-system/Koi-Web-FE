@@ -41,3 +41,4 @@ const KoiBreadcumb = ({ koiName }: { koiName?: string }) => {
 };
 
 export default KoiBreadcumb;
+

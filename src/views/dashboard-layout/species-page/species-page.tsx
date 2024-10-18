@@ -15,10 +15,10 @@ import { useSpeciesQuery } from "@/domains/stores/hooks/species/use-species";
 import usePaginationStore from "@/domains/stores/zustand/pagination/use-pagination-store";
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
 import SpeciesTable from "@/views/dashboard-layout/species-page/components/species-table";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 const SpeciesPage = () => {
-  const { search } = useSearchStore();
+  const { search, setSearch } = useSearchStore();
   const { updatePageIndex, pagination, updatePageSize } = usePaginationStore();
 
   const options = useMemo(() => {
@@ -37,21 +37,21 @@ const SpeciesPage = () => {
   }, [search, pagination]);
   const { data } = useSpeciesQuery({ options });
 
-  // usePageLeave(() => {
-  //   if (pagination["species"]?.pageIndex !== 1) {
-  //     updatePageIndex("species", 1);
-  //   }
-  //   if (search["species"]?.searchValue !== "") {
-  //     setSearch("species", "");
-  //   }
-  // });
+  useEffect(() => {
+    if (pagination["species"]?.pageIndex !== 1) {
+      updatePageIndex("species", 1);
+    }
+    if (search["species"]?.searchValue !== "") {
+      setSearch("species", "");
+    }
+  });
 
   return (
     <div className="px-5 py-10 mx-auto">
       <div className="flex justify-between mb-5">
         <Search placeholder="Search koi" keyObject="species" />
         <Button>
-          <span className="text-sm">Create New Farm</span>
+          <span className="text-sm">Create New Species</span>
         </Button>
       </div>
       <SpeciesTable data={data?.data.items ?? []} />
