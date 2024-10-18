@@ -2,9 +2,11 @@ import { QueryKey } from "@/domains/query-key";
 import { apiCart } from "@/domains/services/carts/carts.service";
 import { useQuery } from "@tanstack/react-query";
 
-interface CardHook {}
+interface CartHook {
+  
+}
 
-export const useCards = (): CardHook => {
+export const useCarts = ({}: CartHook) => {
   const { data, isLoading, error } = useQuery({
     queryKey: [QueryKey.LIST_CARTS],
     queryFn: () => apiCart.getCartList(),

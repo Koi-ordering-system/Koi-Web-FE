@@ -12,4 +12,6 @@ export const QueryKey = {
   DETAIL_KOI: "DETAILKOI",
 
   LIST_CARTS: "LISTCARTS",
+
+  LIST_FEEDBACKS: "LISTFEEDBACKS"
 };

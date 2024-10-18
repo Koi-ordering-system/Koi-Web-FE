@@ -57,7 +57,7 @@ const KoiPage = () => {
           <span className="text-sm">Create New Farm</span>
         </Button>
       </div>
-      <KoiTable data={data?.data.items ?? []} />
+      {data && data.data && <KoiTable data={data.data.items} />}
       <div className="flex items-center justify-between mt-6">
         <div></div>
         <Pagination

@@ -1,16 +1,19 @@
 export interface KoisResponse {
-  id: string;
   name: string;
   description: string;
   minSize: number;
   maxSize: number;
-  farms: [
-    {
-      id: string;
-      name: string;
-    }
-  ]
   isMale: boolean;
   price: number;
-  imageUrls: string;
+  speciesId: string;
+  speciesName: string;
+  colors: string[];
+  farms: Farm[];
+  imageUrls: string[];
+}
+
+export interface Farm {
+  farmKoiId: string;
+  farmId: string;
+  name: string;
 }

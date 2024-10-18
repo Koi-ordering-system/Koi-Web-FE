@@ -10,7 +10,7 @@ export const KoisApi = {
     options?: KoisParams
   ): Promise<RootResponse<Data<KoisResponse[]>> | undefined> => {
     try {
-      const response = await axiosInstance.get("/api/kois", {
+      const response = await axiosInstance.post("/api/kois/get", {
         params: options,
       });
       return response.data;
@@ -19,8 +19,6 @@ export const KoisApi = {
         return error.response?.data;
       }
     }
-
-    return undefined;
   },
 
   getKoiDetail: async (

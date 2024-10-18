@@ -1,7 +1,8 @@
+import ImageSlider from "@/components/common/image-swiper";
 import { useKoiDetail } from "@/domains/stores/hooks/kois/use-koi-detail";
 import { useParams } from "react-router-dom";
 
-const KoiDetail = () => {
+const KoiManageDetail = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
@@ -17,9 +18,18 @@ const KoiDetail = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(data);
 
-  return <div>KoiDetail</div>;
+  if (!data) {
+    return <div>Data not found</div>;
+  }
+
+  return (
+    <div className="w-full p-4">
+      <div className="w-96">
+        {data && data.data && <ImageSlider imageUrls={data.data.imageUrls} />}
+      </div>
+    </div>
+  );
 };
 
-export default KoiDetail;
+export default KoiManageDetail;
