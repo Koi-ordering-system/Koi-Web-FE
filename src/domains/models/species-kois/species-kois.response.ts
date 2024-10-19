@@ -6,4 +6,5 @@ export interface SpeciesKoisResponse {
   maxSize: number;
   price: number;
   imageUrls: string[];
+  color: string;
 }
