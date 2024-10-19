@@ -42,13 +42,13 @@ const SpeciesKoiEdit = () => {
   const form = useForm<SpeciesKoiBodySchema>({
     resolver: zodResolver(speciesKoiSchema),
     defaultValues: {
-      name: "" || FarmState?.name,
-      description: "" || FarmState?.description,
-      minSize: 0 || FarmState?.minSize,
-      maxSize: 0 || FarmState?.maxSize,
-      price: 0 || FarmState?.price,
-      koiImages: [] || FarmState?.koiImages,
-      color: "" || FarmState?.color,
+      name: FarmState?.name || "",
+      description: FarmState?.description || "",
+      minSize: FarmState?.minSize || 0,
+      maxSize: FarmState?.maxSize || 0,
+      price: FarmState?.price || 0,
+      koiImages: FarmState?.koiImages || [],
+      color: FarmState?.color || "",
     },
   });
 
