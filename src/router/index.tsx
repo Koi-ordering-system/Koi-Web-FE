@@ -17,9 +17,9 @@ import ServicePage from "@/views/main-layout/service-page/service-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
 import OrderPage from "@/views/dashboard-layout/order-page/order-page";
 import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
-import SpeciesPage from "@/views/dashboard-layout/species-page/species-page";
-import SpeciesDetail from "@/views/dashboard-layout/species-page/species-detail";
-import SpeciesEdit from "@/views/dashboard-layout/species-page/species-edit";
+import SpeciesKoiPage from "@/views/dashboard-layout/species-koi-page/species-koi-page";
+import SpeciesKoiDetail from "@/views/dashboard-layout/species-koi-page/species-koi-detail";
+import SpeciesKoiEdit from "@/views/dashboard-layout/species-koi-page/species-koi-edit";
 import TravelPage from "@/views/dashboard-layout/travel-page/travel-page";
 import TravelDetail from "@/views/dashboard-layout/travel-page/travel-detail";
 import TravelEdit from "@/views/dashboard-layout/travel-page/travel-edit";
@@ -125,19 +125,19 @@ const router = createBrowserRouter([
       },
       {
         path: "species-koi",
-        element: <SpeciesPage />,
+        element: <SpeciesKoiPage />,
       },
       {
         path: "species-koi/:id",
-        element: <SpeciesDetail />,
+        element: <SpeciesKoiDetail />,
       },
       {
         path: "species-koi/:id/edit",
-        element: <SpeciesEdit />,
+        element: <SpeciesKoiEdit />,
       },
       {
         path: "species-koi/create",
-        element: <SpeciesEdit />,
+        element: <SpeciesKoiEdit />,
       },
     ],
   },

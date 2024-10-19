@@ -10,63 +10,68 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui";
-import { SpeciesParams } from "@/domains/models/species";
-import { useSpeciesQuery } from "@/domains/stores/hooks/species/use-species";
+import { SpeciesKoisParams } from "@/domains/models/species-kois";
+import { useSpeciesKoiQuery } from "@/domains/stores/hooks/species/use-species-kois";
 import usePaginationStore from "@/domains/stores/zustand/pagination/use-pagination-store";
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
-import SpeciesTable from "@/views/dashboard-layout/species-page/components/species-table";
+import SpeciesKoiTable from "@/views/dashboard-layout/species-koi-page/components/species-koi-table";
 import { useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
-const SpeciesPage = () => {
+const SpeciesKoiPage = () => {
+  const navigate = useNavigate();
   const { search, setSearch } = useSearchStore();
   const { updatePageIndex, pagination, updatePageSize } = usePaginationStore();
 
   const options = useMemo(() => {
-    const searchValue = search["species"]?.searchValue || undefined;
+    const searchValue = search["species-koi"]?.searchValue || undefined;
 
-    const newOptions: SpeciesParams = {
-      pageIndex: pagination["species"]?.pageIndex || 1,
-      pageSize: pagination["species"]?.pageSize || 10,
+    const newOptions: SpeciesKoisParams = {
+      pageIndex: pagination["species-koi"]?.pageIndex || 1,
+      pageSize: pagination["species-koi"]?.pageSize || 10,
     };
 
     if (searchValue?.trim()) {
-      newOptions.keyword = searchValue;
+      newOptions.search = searchValue;
     }
 
     return newOptions;
   }, [search, pagination]);
-  const { data } = useSpeciesQuery({ options });
+  const { data } = useSpeciesKoiQuery({ options });
+
+  console.log(data);
 
   useEffect(() => {
-    if (pagination["species"]?.pageIndex !== 1) {
-      updatePageIndex("species", 1);
+    if (pagination["species-koi"]?.pageIndex !== 1) {
+      updatePageIndex("species-koi", 1);
     }
-    if (search["species"]?.searchValue !== "") {
-      setSearch("species", "");
+    if (search["species-koi"]?.searchValue !== "") {
+      setSearch("species-koi", "");
     }
   });
 
   return (
     <div className="px-5 py-10 mx-auto">
       <div className="flex justify-between mb-5">
-        <Search placeholder="Search koi" keyObject="species" />
-        <Button>
-          <span className="text-sm">Create New Species</span>
+        <Search placeholder="Search species koi" keyObject="species-koi" />
+        <Button onClick={() => navigate("create")}>
+          <span className="text-sm">Create New Species Koi</span>
         </Button>
       </div>
-      <SpeciesTable data={data?.data.items ?? []} />
+
+      {data && <SpeciesKoiTable data={data.data.items} />}
       <div className="flex items-center justify-between mt-6">
         <div></div>
         <Pagination
           totalPages={data?.data.totalPages ?? 0}
           currentPage={data?.data.pageNumber ?? 0}
-          onPageChange={(page) => updatePageIndex("species", page)}
+          onPageChange={(page) => updatePageIndex("species-koi", page)}
         />
 
         <Select
           onValueChange={(value) => {
-            updatePageSize("species", Number(value));
-            updatePageIndex("species", 1);
+            updatePageSize("species-koi", Number(value));
+            updatePageIndex("species-koi", 1);
           }}
         >
           <SelectTrigger className="w-36">
@@ -80,7 +85,7 @@ const SpeciesPage = () => {
                   key={pageSize}
                   value={pageSize.toString()}
                   onSelect={() => {
-                    updatePageSize("species", pageSize);
+                    updatePageSize("species-koi", pageSize);
                   }}
                 >
                   {pageSize} rows
@@ -94,4 +99,4 @@ const SpeciesPage = () => {
   );
 };
 
-export default SpeciesPage;
+export default SpeciesKoiPage;

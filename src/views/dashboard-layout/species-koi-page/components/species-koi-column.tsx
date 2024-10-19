@@ -7,35 +7,34 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui";
-import { KoisResponse } from "@/domains/models/kois";
+import { SpeciesKoisResponse } from "@/domains/models/species-kois";
 import { ColumnDef } from "@tanstack/react-table";
-import { Book, MoreHorizontal, Pencil, Trash } from "lucide-react";
+import { BookAudio, MoreHorizontal, Pencil, Trash } from "lucide-react";
 
-interface KoiColumnProps {
+interface SpeciesKoiColumnProps {
   getId: (id: string) => void;
-  editData: (data: KoisResponse) => void;
+  editData: (data: SpeciesKoisResponse) => void;
   deleteData: (id: string) => void;
 }
 
-export const koiColumns = ({
+export const SpeciesKoiColumn = ({
   getId,
   editData,
   deleteData,
-}: KoiColumnProps): ColumnDef<KoisResponse>[] => [
+}: SpeciesKoiColumnProps): ColumnDef<SpeciesKoisResponse>[] => [
   {
-    accessorFn: (_row, index) => index + 1,
     header: "No.",
+    accessorFn: (_row, index) => index + 1,
   },
   {
-    header: "Image",
     accessorKey: "imageUrls",
+    header: "Image",
     cell: ({ row }) => {
-      const koi = row.original;
-
+      const value = row.original.imageUrls[0];
       return (
         <img
-          src={koi.imageUrls[0]}
-          alt={koi.name}
+          src={value}
+          alt="koi"
           className="object-cover rounded-lg size-20"
         />
       );
@@ -45,10 +44,7 @@ export const koiColumns = ({
     accessorKey: "name",
     header: "Name",
   },
-  {
-    header: "Species",
-    accessorKey: "speciesName",
-  },
+
   {
     accessorKey: "minSize",
     header: "Min Size",
@@ -64,8 +60,6 @@ export const koiColumns = ({
   {
     id: "actions",
     cell: ({ row }) => {
-      const koi = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -77,21 +71,21 @@ export const koiColumns = ({
             <DropdownMenuGroup>
               <DropdownMenuItem
                 className="space-x-4"
-                onClick={() => getId(koi.id)}
+                onClick={() => getId(row.original.id)}
               >
-                <Book className="size-4" />
+                <BookAudio className="size-4" />
                 <span>Detail</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="space-x-4"
-                onClick={() => editData(koi)}
+                onClick={() => editData(row.original)}
               >
                 <Pencil className="size-4" />
                 <span>Edit</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="space-x-4"
-                onClick={() => deleteData(koi.id)}
+                onClick={() => deleteData(row.original.id)}
               >
                 <Trash className="size-4" />
                 <span>Delete</span>

@@ -1,9 +1,9 @@
-export interface KoisBody {
-  speciesId: string;
+export interface SpeciesKoisResponse {
+  id: string;
   name: string;
   description: string;
   minSize: number;
   maxSize: number;
-  isMale: boolean;
   price: number;
+  imageUrls: string[];
 }

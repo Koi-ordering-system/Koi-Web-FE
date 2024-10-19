@@ -1,4 +1,4 @@
-import { KoisParams } from "@/domains/models/kois";
+import { KoisParams } from "@/domains/models/species-kois";
 import { QueryKey } from "@/domains/query-key";
 import { KoisApi } from "@/domains/services/kois/kois.service";
 import { useQuery } from "@tanstack/react-query";
@@ -14,4 +14,4 @@ export const useKoiQuery = ({ options }: KoiQuery) => {
   });
 
   return { data, isLoading, error };
-}
+};

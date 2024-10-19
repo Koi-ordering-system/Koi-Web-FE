@@ -1,13 +1,9 @@
-export interface KoisResponse {
-  id: string;
+export interface SpeciesKoiDetailResponse {
   name: string;
   description: string;
   minSize: number;
   maxSize: number;
-  isMale: boolean;
   price: number;
-  speciesId: string;
-  speciesName: string;
   colors: string[];
   farms: Farm[];
   imageUrls: string[];
