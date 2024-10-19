@@ -15,6 +15,7 @@ import { useSpeciesKoiQuery } from "@/domains/stores/hooks/species/use-species-k
 import usePaginationStore from "@/domains/stores/zustand/pagination/use-pagination-store";
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
 import SpeciesKoiTable from "@/views/dashboard-layout/species-koi-page/components/species-koi-table";
+import { PlusCircle } from "lucide-react";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -54,7 +55,8 @@ const SpeciesKoiPage = () => {
     <div className="px-5 py-10 mx-auto">
       <div className="flex justify-between mb-5">
         <Search placeholder="Search species koi" keyObject="species-koi" />
-        <Button onClick={() => navigate("create")}>
+        <Button onClick={() => navigate("create")} className="space-x-2">
+          <PlusCircle size={16} />
           <span className="text-sm">Create New Species Koi</span>
         </Button>
       </div>
