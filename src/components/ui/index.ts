@@ -29,3 +29,5 @@ export * from "./toggle";
 export * from "./tooltip";
 export * from "./resizable";
 export * from "./slider";
+export * from "./carousel";
+export * from "./skeleton";

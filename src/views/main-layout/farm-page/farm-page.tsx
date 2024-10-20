@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { farmApi } from "@/domains/services/farms/farms.service";
 import { FarmsResponse } from "@/domains/models/farms";
 import {
@@ -19,6 +21,8 @@ import FarmSearch from "@/components/input/search-input";
 import StarRating from "@/components/rating/star-rating";
 
 const FarmPage = () => {
+  const navigate = useNavigate(); 
+
   const [farms, setFarms] = useState<FarmsResponse[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [pageIndex, setPageIndex] = useState<number>(1);
@@ -47,6 +51,10 @@ const FarmPage = () => {
     farm.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleViewDetails = (id: string) => {
+    navigate(`/farm/${id}`); 
+  };
+
   return (
     <div className="max-w-7xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Farm List</h1>
@@ -73,8 +81,10 @@ const FarmPage = () => {
             </CardContent>
 
             <CardFooter className="flex justify-end">
-              
-              <Button className="py-2 px-4 rounded">
+              <Button
+                className="py-2 px-4 rounded"
+                onClick={() => handleViewDetails(farm.id)} // Gọi handleViewDetails với farm id
+              >
                 View Details
               </Button>
             </CardFooter>
@@ -111,4 +121,3 @@ const FarmPage = () => {
 };
 
 export default FarmPage;
-
