@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { farmApi } from "@/domains/services/farms/farms.service";
-import StarRating from "@/components/rating/star-rating";
+import StarRating from "@/components/common/star-rating";
 import { FarmDetailResponse } from "@/domains/models/farms/farm-detail.response";
 import { Loading } from "@/components/common/loading";
 import {
