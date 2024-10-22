@@ -5,7 +5,7 @@ const menu = [
   { name: "Home", href: "/" },
   { name: "Farm", href: "/farm" },
   { name: "Policy", href: "/policy" },
-  { name: "Service", href: "/service" },
+  { name: "Travel", href: "/travel" },
 ];
 
 const Navbar = () => {
