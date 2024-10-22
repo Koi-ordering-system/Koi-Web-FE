@@ -1,4 +1,5 @@
 export * from "./accordion";
+export * from "./alert";
 export * from "./alert-dialog";
 export * from "./avatar";
 export * from "./badge";
@@ -28,3 +29,5 @@ export * from "./toggle";
 export * from "./tooltip";
 export * from "./resizable";
 export * from "./slider";
+export * from "./carousel";
+export * from "./skeleton";

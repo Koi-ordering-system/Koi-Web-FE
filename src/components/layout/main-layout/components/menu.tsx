@@ -15,7 +15,14 @@ import {
 } from "@/components/ui";
 import { useTheme } from "@/hooks";
 import { useAuth, UserProfile, useUser } from "@clerk/clerk-react";
-import { Sun, Moon, LogOut, User, LayoutDashboard } from "lucide-react";
+import {
+  Sun,
+  Moon,
+  LogOut,
+  User,
+  LayoutDashboard,
+  History,
+} from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -58,6 +65,10 @@ const MenuProfile = () => {
             <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>
               <User className="mr-2 size-5" />
               <Label>Profile</Label>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate("/history")}>
+              <History className="mr-2 size-5" />
+              <Label>History Order</Label>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => navigate("/dashboard")}>
               <LayoutDashboard className="mr-2 size-5" />

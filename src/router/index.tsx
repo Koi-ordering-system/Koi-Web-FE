@@ -1,8 +1,8 @@
 import { Loading } from "@/components/common";
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import ErrorPage from "@/components/error-page";
 
+import ErrorPage from "@/components/error-page";
 import Login from "@/views/auth-page/sign-in/login";
 import Register from "@/views/auth-page/sign-up/register";
 import FarmDetail from "@/views/main-layout/farm-page/farm-detail";
@@ -11,20 +11,18 @@ import FarmManage from "@/views/dashboard-layout/farm-page/farm-page";
 import FarmManageDetail from "@/views/dashboard-layout/farm-page/farm-details";
 import FarmManageEdit from "@/views/dashboard-layout/farm-page/farm-edit";
 import HomePage from "@/views/main-layout/home-page/home-page";
-import KoiDetail from "@/views/main-layout/koi-page/koi-detail";
-import KoiPage from "@/views/main-layout/koi-page/koi-page";
-import KoiManage from "@/views/dashboard-layout/koi-page/koi-page";
-import KoiManageDetail from "@/views/dashboard-layout/koi-page/koi-detail";
-import KoiManageEdit from "@/views/dashboard-layout/koi-page/koi-edit";
+// import HistoryPage from "@/views/main-layout/history-page/history-page";
 import PolicyPage from "@/views/main-layout/policy-page/policy-page";
-import ServicePage from "@/views/main-layout/service-page/service-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
 import OrderPage from "@/views/dashboard-layout/order-page/order-page";
 import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
-import ShoppingCart from "@/views/main-layout/shopping-cart-page/shopping-cart-page";
-import SpeciesPage from "@/views/dashboard-layout/species-page/species-page";
-import SpeciesDetail from "@/views/dashboard-layout/species-page/species-detail";
-import SpeciesEdit from "@/views/dashboard-layout/species-page/species-edit";
+import SpeciesKoiPage from "@/views/dashboard-layout/species-koi-page/species-koi-page";
+import SpeciesKoiDetail from "@/views/dashboard-layout/species-koi-page/species-koi-detail";
+import SpeciesKoiEdit from "@/views/dashboard-layout/species-koi-page/species-koi-edit";
+import TravelPage from "@/views/dashboard-layout/travel-page/travel-page";
+import TravelDetail from "@/views/dashboard-layout/travel-page/travel-detail";
+import TravelEdit from "@/views/dashboard-layout/travel-page/travel-edit";
+import FeedbackPage from "@/views/dashboard-layout/feedback-page/feedback-page";
 
 /*eslint-disable*/
 const RootLayout = lazy(() => import("@/components/layout/main-layout"));
@@ -53,25 +51,17 @@ const router = createBrowserRouter([
         path: "farm/:id",
         element: <FarmDetail />,
       },
-      {
-        path: "koi",
-        element: <KoiPage />,
-      },
-      {
-        path: "koi/:id",
-        element: <KoiDetail />,
-      },
+      // {
+      //   path: "history",
+      //   element: <HistoryPage />,
+      // },
       {
         path: "policy",
         element: <PolicyPage />,
       },
       {
-        path: "service",
-        element: <ServicePage />,
-      },
-      {
-        path: "shopping-cart",
-        element: <ShoppingCart />,
+        path: "travel",
+        element: <TravelPage/>,
       },
     ],
   },
@@ -105,20 +95,24 @@ const router = createBrowserRouter([
         element: <FarmManageEdit />,
       },
       {
-        path: "koi",
-        element: <KoiManage />,
+        path: "traveling",
+        element: <TravelPage />,
       },
       {
-        path: "koi/:id",
-        element: <KoiManageDetail />,
+        path: "traveling/:id",
+        element: <TravelDetail />,
       },
       {
-        path: "koi/:id/edit",
-        element: <KoiManageEdit />,
+        path: "traveling/:id/edit",
+        element: <TravelEdit />,
       },
       {
-        path: "koi/create",
-        element: <FarmManageEdit />,
+        path: "traveling/create",
+        element: <TravelEdit />,
+      },
+      {
+        path: "feedback",
+        element: <FeedbackPage />,
       },
       {
         path: "order",
@@ -129,20 +123,20 @@ const router = createBrowserRouter([
         element: <ChatPage />,
       },
       {
-        path: "species",
-        element: <SpeciesPage />,
+        path: "species-koi",
+        element: <SpeciesKoiPage />,
       },
       {
-        path: "species/:id",
-        element: <SpeciesDetail />,
+        path: "species-koi/:id",
+        element: <SpeciesKoiDetail />,
       },
       {
-        path: "species/:id/edit",
-        element: <SpeciesEdit />,
+        path: "species-koi/:id/edit",
+        element: <SpeciesKoiEdit />,
       },
       {
-        path: "species/create",
-        element: <SpeciesEdit />,
+        path: "species-koi/create",
+        element: <SpeciesKoiEdit />,
       },
     ],
   },
