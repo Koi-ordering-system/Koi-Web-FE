@@ -43,7 +43,11 @@ export const speciesKoiApi = {
     data: SpeciesKoisBody
   ): Promise<RootResponse<SpeciesKoisEditResponse> | undefined> => {
     try {
-      const response = await axiosInstance.post("/api/kois", data);
+      const response = await axiosInstance.post("/api/kois", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -57,7 +61,11 @@ export const speciesKoiApi = {
     data: SpeciesKoisBody
   ): Promise<RootResponse<SpeciesKoisEditResponse> | undefined> => {
     try {
-      const response = await axiosInstance.put(`/api/kois/${id}`, data);
+      const response = await axiosInstance.put(`/api/kois/${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -15,12 +15,12 @@ import UseFarmsQuery from "@/domains/stores/hooks/farms/use-farms";
 import usePaginationStore from "@/domains/stores/zustand/pagination/use-pagination-store";
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
 import FarmTable from "@/views/dashboard-layout/farm-page/components/farm-table";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const FarmPage = () => {
   const navigate = useNavigate();
-  const { search, setSearch } = useSearchStore();
+  const { search } = useSearchStore();
   const { updatePageIndex, pagination, updatePageSize } = usePaginationStore();
 
   const options = useMemo(() => {
@@ -38,11 +38,11 @@ const FarmPage = () => {
     return newOptions;
   }, [search, pagination]);
 
-  const { data, isLoading } = UseFarmsQuery({
+  const { data, isLoading, refetch } = UseFarmsQuery({
     options,
   });
 
-  // usePageLeave(() => {
+  // useEffect(() => {
   //   if (pagination["farm"]?.pageIndex !== 1) {
   //     updatePageIndex("farm", 1);
   //   }
@@ -50,15 +50,6 @@ const FarmPage = () => {
   //     setSearch("farm", "");
   //   }
   // });
-
-  useEffect(() => {
-    if (pagination["farm"]?.pageIndex !== 1) {
-      updatePageIndex("farm", 1);
-    }
-    if (search["farm"]?.searchValue !== "") {
-      setSearch("farm", "");
-    }
-  }, []);
 
   return (
     <div className="px-5 py-10 mx-auto">
@@ -68,12 +59,16 @@ const FarmPage = () => {
           <span className="text-sm">Create New Farm</span>
         </Button>
       </div>
-      <FarmTable data={data?.data.items ?? []} isLoading={isLoading} />
+      <FarmTable
+        data={data?.data?.items ?? []}
+        isLoading={isLoading}
+        refetch={refetch}
+      />
       <div className="flex items-center justify-between mt-6">
         <div></div>
         <Pagination
-          totalPages={data?.data.totalPages ?? 0}
-          currentPage={data?.data.pageNumber ?? 0}
+          totalPages={data?.data?.totalPages ?? 0}
+          currentPage={data?.data?.pageNumber ?? 0}
           onPageChange={(page) => updatePageIndex("farm", page)}
         />
 

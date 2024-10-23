@@ -1,15 +1,19 @@
+import { Button } from "@/components/ui";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useFarmsDetail } from "@/domains/stores/hooks/farms/use-farm-detail";
-import { useParams } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { FarmHeader } from "@/views/dashboard-layout/farm-page/components/farm-header";
+import { FarmImageGallery } from "@/views/dashboard-layout/farm-page/components/farm-image-gallery";
+import { KoiSection } from "@/views/dashboard-layout/farm-page/components/farm-koi-section";
+import { TripSection } from "@/views/dashboard-layout/farm-page/components/farm-trip-section";
+import { Pencil } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
-import { Skeleton } from "@/components/ui/skeleton";
-import { CircleUser, MapPin, Pencil, Star, Trash } from "lucide-react";
-import { Button } from "@/components/ui";
 
 const FarmDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   if (!id) {
     return <div>Not found Id</div>;
@@ -27,79 +31,35 @@ const FarmDetails = () => {
 
   const farm = data?.data;
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <Star
-        key={index}
-        className={`w-5 h-5 ${
-          index < rating ? "text-yellow-500" : "text-gray-300"
-        }`}
-      />
-    ));
-  };
-
   return (
-    <div className="">
-      <div className="container relative grid grid-cols-1 gap-6 p-6 rounded-lg shadow-lg bg-background md:grid-cols-2">
-        {/* Hình ảnh farm với Swiper */}
-        <div className="relative h-80">
-          <Swiper
-            spaceBetween={10}
-            navigation={true}
-            modules={[Navigation]}
-            className="w-full h-full"
-          >
-            {farm?.farmImages.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={image}
-                  alt={`Farm image ${index + 1}`}
-                  className="object-cover w-full h-full rounded-lg"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+    <div className="container px-4 py-8 mx-auto space-y-3">
+      <div className="grid place-content-end">
+        <Button
+          className="space-x-2"
+          onClick={() => {
+            navigate("edit", { state: farm });
+          }}
+        >
+          <Pencil size={16} />
+          <span>Edit Farm</span>
+        </Button>
+      </div>
+      <div className="grid grid-cols-10 gap-4">
+        <div className="col-span-4">
+          <FarmImageGallery images={farm?.farmImages || []} />
         </div>
-
-        {/* Thông tin chi tiết farm */}
-        <div className="flex flex-col gap-4">
-          <h1 className="text-3xl font-semibold text-foreground">
-            {farm?.name}
-          </h1>
-
-          <p className="text-lg text-muted-foreground">{farm?.description}</p>
-
-          {/* Đánh giá 5 sao */}
-          <div className="flex items-center gap-1">
-            {renderStars(farm?.rating || 0)}
-            <span className="ml-2 text-lg text-muted-foreground">
-              {farm?.rating?.toString().slice(0, 5) || "No rating"}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2 text-foreground">
-            <MapPin className="size-5" />
-            <span>{farm?.address}</span>
-          </div>
-
-          <div className="flex items-center gap-2 text-gray-800">
-            <CircleUser className="size-5" />
-            <span>{farm?.owner}</span>
-          </div>
-
-          <div className="absolute z-10 space-x-3 right-4 bottom-4">
-            {/* Nút Edit với icon Pencil */}
-            <Button>
-              <Pencil className="w-4 h-4 mr-2" /> Edit Details
-            </Button>
-
-            {/* Nút Delete với icon Trash và biến thể outline */}
-            <Button variant="outline">
-              <Trash className="w-4 h-4 mr-2" /> Delete Farm
-            </Button>
-          </div>
+        <div className="col-span-6">
+          <FarmHeader
+            name={farm?.name || ""}
+            address={farm?.address || ""}
+            rating={farm?.rating || 0}
+            owner={farm?.owner || ""}
+            description={farm?.description || ""}
+          />
         </div>
       </div>
+      <KoiSection kois={farm?.kois || []} />
+      <TripSection trips={farm?.trips || []} />
     </div>
   );
 };

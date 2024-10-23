@@ -20,10 +20,14 @@ import {
   Input,
   Textarea,
 } from "@/components/ui";
+import { RootResponse } from "@/domains/models/root/root.response";
+import { SpeciesKoisEditResponse } from "@/domains/models/species-kois";
 import {
   SpeciesKoiBodySchema,
   speciesKoiSchema,
 } from "@/domains/schemas/species-koi.schema";
+import { speciesKoiApi } from "@/domains/services/species-koi/species-koi.service";
+import { useToast } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, PlusCircle, Save, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -34,6 +38,7 @@ const MAX_IMAGES = 8;
 
 const SpeciesKoiEdit = () => {
   const { id } = useParams<{ id: string }>();
+  const { toast } = useToast();
   const { state: FarmState } = useLocation();
   const [imageFiles, setImageFiles] = useState<string[]>(
     FarmState?.koiImages || []
@@ -64,16 +69,42 @@ const SpeciesKoiEdit = () => {
       koiImages: imageFiles,
     };
 
-    console.log(formDataWithImages);
+    const response: RootResponse<SpeciesKoisEditResponse> | undefined = id
+      ? await speciesKoiApi.updateSpeciesKoi(id, formDataWithImages)
+      : await speciesKoiApi.createSpeciesKoi(formDataWithImages);
+
+    if (response?.succeeded === true) {
+      toast({
+        title: "Success",
+        description: response.message,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: response?.message || "Failed to save changes.",
+      });
+    }
   };
 
-  const handleFilesSelected = (files: File[]) => {
-    const newFiles = [
-      ...imageFiles,
-      ...files.map((file) => URL.createObjectURL(file)),
-    ].slice(0, MAX_IMAGES);
-    setImageFiles(newFiles);
-    form.setValue("koiImages", newFiles, { shouldValidate: true });
+  const convertFileToDataURL = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result as string);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFilesSelected = async (files: File[]) => {
+    try {
+      const newImages = await Promise.all(files.map(convertFileToDataURL));
+      setImageFiles((prevImages) => [...prevImages, ...newImages]);
+      form.setValue("koiImages", [...imageFiles, ...newImages]);
+    } catch (error) {
+      console.error("Error converting files to data URLs:", error);
+    }
   };
 
   const removeImage = (index: number) => {

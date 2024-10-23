@@ -2,7 +2,7 @@ import { FarmsBody, FarmsParams } from "@/domains/models/farms";
 import { QueryKey } from "@/domains/query-key";
 import { farmApi } from "@/domains/services/farms/farms.service";
 import { useToast } from "@/hooks";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface UseFarmsQuery {
   options?: FarmsParams;
@@ -21,7 +21,6 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
     mutationFn: (data: FarmsBody) => farmApi.createFarm(data),
 
     onSuccess: () => {
-      refetch();
       toast({
         title: "Farm created successfully",
         description: "Farm has been created successfully",
@@ -42,7 +41,6 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
       farmApi.updateFarm(id, data),
 
     onSuccess: () => {
-      refetch();
       toast({
         title: "Farm updated successfully",
         description: "Farm has been updated successfully",
@@ -61,9 +59,9 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
     data,
     isLoading,
     error,
-    refetch,
     createFarm,
     updateFarm,
+    refetch,
   };
 };
 
