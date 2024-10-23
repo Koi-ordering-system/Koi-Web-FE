@@ -20,13 +20,14 @@ const FarmDetail = () => {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const [farmDetail, setFarmDetail] = useState<FarmDetailResponse>({
-    id: "",
     name: "",
     owner: "",
     address: "",
     description: "",
     rating: 0,
     farmImages: [],
+    kois: [],
+    trips: [],
   });
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const FarmDetail = () => {
       setLoading(true);
       const result = await farmApi.getFarmDetail(id!);
       if (result) {
-        setFarmDetail(result.data);
+        setFarmDetail(result.data!);
       }
       setLoading(false);
     };
@@ -60,7 +61,7 @@ const FarmDetail = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-4 pt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid max-w-6xl grid-cols-1 gap-4 p-4 pt-10 mx-auto md:grid-cols-2">
       <div className="flex-shrink-0">
         <Carousel orientation="horizontal" setApi={setApi}>
           <CarouselContent>
@@ -69,20 +70,22 @@ const FarmDetail = () => {
                 <img
                   src={image}
                   alt={`Farm image ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="object-cover w-full h-full rounded-lg"
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="py-2 text-center text-sm text-muted-foreground">
+        <div className="py-2 text-sm text-center text-muted-foreground">
           {current}/{count}
         </div>
       </div>
       <div className="m-10">
-        <h1 className="text-3xl font-bold mb-4">{farmDetail.name}</h1>
-        <p className="text-lg font-semibold mb-2">Owner: {farmDetail.owner}</p>
-        <p className="text-lg font-semibold mb-2">Address: {farmDetail.address}</p>
+        <h1 className="mb-4 text-3xl font-bold">{farmDetail.name}</h1>
+        <p className="mb-2 text-lg font-semibold">Owner: {farmDetail.owner}</p>
+        <p className="mb-2 text-lg font-semibold">
+          Address: {farmDetail.address}
+        </p>
         <StarRating rating={farmDetail.rating} />
         <p className="mt-2 mb-4">{farmDetail.description}</p>
       </div>
@@ -91,4 +94,3 @@ const FarmDetail = () => {
 };
 
 export default FarmDetail;
-

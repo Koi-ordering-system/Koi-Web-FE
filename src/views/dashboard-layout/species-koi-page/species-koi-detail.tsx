@@ -40,25 +40,25 @@ const SpeciesKoiDetail = () => {
       <Card>
         <KoiHeader
           id={id}
-          name={data?.data.name}
-          description={data?.data.description}
-          data={data.data}
+          name={data?.data!.name}
+          description={data?.data!.description}
+          data={data.data!}
         />
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <InfoCard
               title="Size Range"
-              value={`${data.data.minSize}" - ${data.data.maxSize}"`}
+              value={`${data.data!.minSize}" - ${data.data!.maxSize}"`}
               icon={<Fish className="w-4 h-4" />}
             />
             <InfoCard
               title="Price"
-              value={`$${data.data.price.toLocaleString()}`}
+              value={`$${data.data!.price.toLocaleString()}`}
               icon={<CircleDollarSign className="w-4 h-4" />}
             />
             <InfoCard
               title="Color Varieties"
-              value={data.data.colors.length.toString()}
+              value={data.data!.colors.length.toString()}
               icon={<PaintBucket className="w-4 h-4" />}
             />
           </div>
@@ -71,13 +71,13 @@ const SpeciesKoiDetail = () => {
           <TabsTrigger value="gallery">Gallery</TabsTrigger>
         </TabsList>
         <TabsContent value="colors">
-          <ColorTab colors={data.data.colors} name={data.data.name} />
+          <ColorTab colors={data.data!.colors} name={data.data!.name} />
         </TabsContent>
         <TabsContent value="farms">
-          <FarmsTab farms={data.data.farms} name={data.data.name} />
+          <FarmsTab farms={data.data!.farms} name={data.data!.name} />
         </TabsContent>
         <TabsContent value="gallery">
-          <GalleryTab images={data.data.imageUrls} name={data.data.name} />
+          <GalleryTab images={data.data!.imageUrls} name={data.data!.name} />
         </TabsContent>
       </Tabs>
     </div>

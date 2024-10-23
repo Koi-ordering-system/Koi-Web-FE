@@ -17,7 +17,7 @@ const TravelSideFilter = () => {
   const { data: farms, isLoading: isFarmLoaing } = UseFarmsQuery({});
 
   return (
-    <aside className=" ">
+    <aside className="">
       <Search placeholder="Search" keyObject={"travel"} />
       {/* Farm */}
       <div className="mt-10 space-y-5">
@@ -40,7 +40,7 @@ const TravelSideFilter = () => {
                     <SelectValue placeholder="Farms" />
                   </SelectTrigger>
                   <SelectContent>
-                    {farms?.data.items?.map((farm) => (
+                    {farms?.data?.items?.map((farm) => (
                       <SelectItem key={farm.id} value={farm.id}>
                         {farm.name}
                       </SelectItem>
@@ -107,7 +107,8 @@ const TravelSideFilter = () => {
               className="border-muted-foreground text-muted-foreground"
             >
               <span>4 ⭐️</span>
-            </Button><Button
+            </Button>
+            <Button
               variant="outline"
               className="border-muted-foreground text-muted-foreground"
             >
@@ -116,7 +117,6 @@ const TravelSideFilter = () => {
           </div>
         </div>
       </div>
-
     </aside>
   );
 };

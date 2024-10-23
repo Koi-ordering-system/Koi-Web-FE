@@ -46,12 +46,12 @@ const TravelPage = () => {
           <span className="text-sm">Create New Farm</span>
         </Button>
       </div>
-      <TravelTable data={data?.data.items ?? []} />
+      <TravelTable data={data?.data?.items ?? []} />
       <div className="flex items-center justify-between mt-6">
         <div></div>
         <Pagination
-          totalPages={data?.data.totalPages ?? 0}
-          currentPage={data?.data.pageNumber ?? 0}
+          totalPages={data?.data?.totalPages ?? 0}
+          currentPage={data?.data?.pageNumber ?? 0}
           onPageChange={(page) => updatePageIndex("travels", page)}
         />
 
