@@ -2,7 +2,7 @@ import { FarmsBody, FarmsParams } from "@/domains/models/farms";
 import { QueryKey } from "@/domains/query-key";
 import { farmApi } from "@/domains/services/farms/farms.service";
 import { useToast } from "@/hooks";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 interface UseFarmsQuery {
   options?: FarmsParams;

@@ -11,9 +11,8 @@ import FarmManage from "@/views/dashboard-layout/farm-page/farm-page";
 import FarmManageDetail from "@/views/dashboard-layout/farm-page/farm-details";
 import FarmManageEdit from "@/views/dashboard-layout/farm-page/farm-edit";
 import HomePage from "@/views/main-layout/home-page/home-page";
-import HistoryPage from "@/views/main-layout/history-page/history-page";
+// import HistoryPage from "@/views/main-layout/history-page/history-page";
 import PolicyPage from "@/views/main-layout/policy-page/policy-page";
-import ServicePage from "@/views/main-layout/service-page/service-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
 import OrderPage from "@/views/dashboard-layout/order-page/order-page";
 import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
@@ -52,17 +51,17 @@ const router = createBrowserRouter([
         path: "farm/:id",
         element: <FarmDetail />,
       },
-      {
-        path: "history",
-        element: <HistoryPage />,
-      },
+      // {
+      //   path: "history",
+      //   element: <HistoryPage />,
+      // },
       {
         path: "policy",
         element: <PolicyPage />,
       },
       {
-        path: "service",
-        element: <ServicePage />,
+        path: "travel",
+        element: <TravelPage/>,
       },
     ],
   },
