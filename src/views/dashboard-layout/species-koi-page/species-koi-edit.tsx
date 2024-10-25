@@ -20,8 +20,6 @@ import {
   Input,
   Textarea,
 } from "@/components/ui";
-import { RootResponse } from "@/domains/models/root/root.response";
-import { SpeciesKoisEditResponse } from "@/domains/models/species-kois";
 import {
   SpeciesKoiBodySchema,
   speciesKoiSchema,

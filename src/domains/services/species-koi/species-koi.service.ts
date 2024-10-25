@@ -3,7 +3,6 @@ import { Data, RootResponse } from "@/domains/models/root/root.response";
 import {
   SpeciesKoiDetailResponse,
   SpeciesKoisBody,
-  SpeciesKoisEditResponse,
   SpeciesKoisParams,
   SpeciesKoisResponse,
 } from "@/domains/models/species-kois";

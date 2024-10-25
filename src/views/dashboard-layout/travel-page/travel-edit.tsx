@@ -1,3 +1,4 @@
+import { Loading } from "@/components/common";
 import {
   Button,
   Card,
@@ -37,7 +38,7 @@ const TravelEdit = () => {
   const { state: TravelState } = useLocation();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const { data, isLoading, error } = UseFarmsQuery({
+  const { data, isLoading } = UseFarmsQuery({
     options: {
       pageIndex: 1,
       pageSize: 100,
@@ -47,11 +48,15 @@ const TravelEdit = () => {
   const form = useForm<TravelBodySchema>({
     resolver: zodResolver(travelSchema),
     defaultValues: {
-      farmId: "",
-      days: 1,
-      price: 0,
+      farmId: TravelState.farmId || "",
+      days: TravelState.days || 0,
+      price: TravelState.price || 0,
     },
   });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const onSubmit = async (data: TravelBodySchema) => {
     setIsSubmitting(true);
