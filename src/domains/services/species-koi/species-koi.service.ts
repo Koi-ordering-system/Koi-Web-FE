@@ -41,14 +41,27 @@ export const speciesKoiApi = {
 
   createSpeciesKoi: async (
     data: SpeciesKoisBody
-  ): Promise<RootResponse<SpeciesKoisEditResponse> | undefined> => {
+  ): Promise<boolean | undefined> => {
     try {
-      const response = await axiosInstance.post("/api/kois", data, {
+      const formData = new FormData();
+
+      formData.append("name", data.name);
+      formData.append("description", data.description);
+      formData.append("minSize", data.minSize.toString());
+      formData.append("maxSize", data.maxSize.toString());
+      formData.append("price", data.price.toString());
+      formData.append("colors", data.colors);
+      formData.append("koiImages", JSON.stringify(data.koiImages));
+
+      const response = await axiosInstance.post("/api/kois", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      return response.data;
+
+      if (response.status === 201) {
+        return true;
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;
@@ -57,16 +70,14 @@ export const speciesKoiApi = {
   },
 
   updateSpeciesKoi: async (
-    id: string,
+    koiId: string,
     data: SpeciesKoisBody
-  ): Promise<RootResponse<SpeciesKoisEditResponse> | undefined> => {
+  ): Promise<boolean | undefined> => {
     try {
-      const response = await axiosInstance.put(`/api/kois/${id}`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data;
+      const response = await axiosInstance.put(`/api/kois/${koiId}`, data);
+      if (response.status === 204) {
+        return true;
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;
