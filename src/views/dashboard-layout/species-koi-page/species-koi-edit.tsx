@@ -20,8 +20,6 @@ import {
   Input,
   Textarea,
 } from "@/components/ui";
-import { RootResponse } from "@/domains/models/root/root.response";
-import { SpeciesKoisEditResponse } from "@/domains/models/species-kois";
 import {
   SpeciesKoiBodySchema,
   speciesKoiSchema,
@@ -53,7 +51,7 @@ const SpeciesKoiEdit = () => {
       maxSize: FarmState?.maxSize || 0,
       price: FarmState?.price || 0,
       koiImages: FarmState?.koiImages || [],
-      color: FarmState?.color || "",
+      colors: FarmState?.colors || "",
     },
   });
 
@@ -69,19 +67,19 @@ const SpeciesKoiEdit = () => {
       koiImages: imageFiles,
     };
 
-    const response: RootResponse<SpeciesKoisEditResponse> | undefined = id
+    const response: boolean | undefined = id
       ? await speciesKoiApi.updateSpeciesKoi(id, formDataWithImages)
       : await speciesKoiApi.createSpeciesKoi(formDataWithImages);
 
-    if (response?.succeeded === true) {
+    if (response === true) {
       toast({
         title: "Success",
-        description: response.message,
+        description: "Changes saved successfully.",
       });
     } else {
       toast({
         title: "Error",
-        description: response?.message || "Failed to save changes.",
+        description: "Failed to save changes.",
       });
     }
   };
@@ -129,61 +127,65 @@ const SpeciesKoiEdit = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <CardContent className="grid grid-cols-10 gap-4">
-              <div className="col-span-4 space-y-2">
-                <FormField
-                  control={form.control}
-                  name="koiImages"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>Koi Images</FormLabel>
-                      <FormControl>
-                        <FileInput
-                          onFilesSelected={handleFilesSelected}
-                          maxFiles={MAX_IMAGES - imageFiles.length}
-                          disabled={imageFiles.length >= MAX_IMAGES}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Upload images of the koi species (max {MAX_IMAGES}).
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
+              {!id && (
+                <div className="col-span-4 space-y-2">
+                  <FormField
+                    control={form.control}
+                    name="koiImages"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Koi Images</FormLabel>
+                        <FormControl>
+                          <FileInput
+                            onFilesSelected={handleFilesSelected}
+                            maxFiles={MAX_IMAGES - imageFiles.length}
+                            disabled={imageFiles.length >= MAX_IMAGES}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          Upload images of the koi species (max {MAX_IMAGES}).
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  {imageFiles.length >= MAX_IMAGES && (
+                    <Alert variant="warning">
+                      <AlertCircle className="w-4 h-4" />
+                      <AlertTitle>Image limit reached</AlertTitle>
+                      <AlertDescription>
+                        You have reached the maximum of {MAX_IMAGES} images.
+                        Remove some images to add more.
+                      </AlertDescription>
+                    </Alert>
                   )}
-                />
-                {imageFiles.length >= MAX_IMAGES && (
-                  <Alert variant="warning">
-                    <AlertCircle className="w-4 h-4" />
-                    <AlertTitle>Image limit reached</AlertTitle>
-                    <AlertDescription>
-                      You have reached the maximum of {MAX_IMAGES} images.
-                      Remove some images to add more.
-                    </AlertDescription>
-                  </Alert>
-                )}
-                {imageFiles.length > 0 && (
-                  <div className="grid grid-cols-4 gap-2 ">
-                    {imageFiles.map((file, index) => (
-                      <div key={index} className="relative group">
-                        <img
-                          src={file}
-                          alt={`Koi ${index + 1}`}
-                          className="object-cover w-full h-24 rounded"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeImage(index)}
-                          className="absolute flex items-center justify-center w-6 h-6 text-white transition-opacity bg-red-500 rounded-full opacity-0 top-1 right-1 group-hover:opacity-100"
-                          aria-label={`Remove image ${index + 1}`}
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+                  {imageFiles.length > 0 && (
+                    <div className="grid grid-cols-4 gap-2 ">
+                      {imageFiles.map((file, index) => (
+                        <div key={index} className="relative group">
+                          <img
+                            src={file}
+                            alt={`Koi ${index + 1}`}
+                            className="object-cover w-full h-24 rounded"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="absolute flex items-center justify-center w-6 h-6 text-white transition-opacity bg-red-500 rounded-full opacity-0 top-1 right-1 group-hover:opacity-100"
+                            aria-label={`Remove image ${index + 1}`}
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
-              <div className="col-span-6 space-y-5">
+              <div
+                className={`${!id ? "col-span-6" : "col-span-10"} space-y-5`}
+              >
                 <FormField
                   control={form.control}
                   name="name"
@@ -282,7 +284,7 @@ const SpeciesKoiEdit = () => {
 
                 <FormField
                   control={form.control}
-                  name="color"
+                  name="colors"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Color</FormLabel>

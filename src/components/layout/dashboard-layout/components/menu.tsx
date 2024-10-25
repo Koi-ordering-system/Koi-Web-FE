@@ -2,7 +2,7 @@ import {
   FishIcon,
   LayoutDashboard,
   LucideProps,
-  MessageCircleMore,
+  // MessageCircleMore,
   Plane,
   SquareChartGantt,
   SquareMenu,
@@ -25,7 +25,7 @@ const menu: MenuProps[] = [
   { name: "Traveling", href: "/dashboard/traveling", icon: Plane },
   { name: "Order", href: "/dashboard/order", icon: SquareMenu },
   { name: "Feedback", href: "/dashboard/feedback", icon: SquareChartGantt },
-  { name: "Chatting", href: "/dashboard/chatting", icon: MessageCircleMore },
+  // { name: "Chatting", href: "/dashboard/chatting", icon: MessageCircleMore },
 ];
 
 const Menu = () => {

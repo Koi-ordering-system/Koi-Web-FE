@@ -3,6 +3,7 @@ import {
   FarmAddKoiBody,
   FarmEditResponse,
   FarmsBody,
+  FarmsFeedbackParams,
   FarmsParams,
   FarmsResponse,
 } from "@/domains/models/farms";
@@ -28,6 +29,24 @@ export const farmApi = {
     return undefined;
   },
 
+  getFaramsFeedback: async (
+    options: FarmsFeedbackParams
+  ): Promise<RootResponse<Data<FarmsResponse[]>> | undefined> => {
+    try {
+      const response = await axiosInstance.get(
+        `/api/farms/${options.orderId}/feedbacks`,
+        {
+          params: options,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
+  },
+
   getFarmDetail: async (
     id: string
   ): Promise<RootResponse<FarmDetailResponse> | undefined> => {
@@ -47,7 +66,15 @@ export const farmApi = {
     data: FarmsBody
   ): Promise<RootResponse<FarmEditResponse> | undefined> => {
     try {
-      const response = await axiosInstance.post("/api/farms", data, {
+      const formData = new FormData();
+
+      formData.append("name", data.name);
+      formData.append("owner", data.owner);
+      formData.append("address", data.address);
+      formData.append("description", data.description);
+      formData.append("farmImages", JSON.stringify(data.farmImages));
+
+      const response = await axiosInstance.post("/api/farms", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -65,7 +92,15 @@ export const farmApi = {
     data: FarmsBody
   ): Promise<RootResponse<FarmEditResponse> | undefined> => {
     try {
-      const response = await axiosInstance.put(`/api/farms/${id}`, data, {
+      const formData = new FormData();
+
+      formData.append("name", data.name);
+      formData.append("owner", data.owner);
+      formData.append("address", data.address);
+      formData.append("description", data.description);
+      formData.append("farmImages", JSON.stringify(data.farmImages));
+
+      const response = await axiosInstance.put(`/api/farms/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -185,7 +185,7 @@ const FarmAddKoi: React.FC<FarmAddKoiProps> = ({ id }) => {
         isOpen={active}
         onClose={() => setActive(false)}
         children={
-          <>
+          <div className="p-10 rounded-lg bg-background">
             <AlertDialogTitle>
               Back to the detail page to see the changes
             </AlertDialogTitle>
@@ -199,7 +199,7 @@ const FarmAddKoi: React.FC<FarmAddKoiProps> = ({ id }) => {
                 <span>Accept</span>
               </AlertDialogAction>
             </AlertDialogFooter>
-          </>
+          </div>
         }
       />
     </>
