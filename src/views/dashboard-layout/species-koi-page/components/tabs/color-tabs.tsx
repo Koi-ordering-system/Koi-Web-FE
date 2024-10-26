@@ -6,9 +6,10 @@ import {
   CardContent,
   Badge,
 } from "@/components/ui";
+import { Color } from "@/domains/models/species-kois";
 
 interface ColorTabProps {
-  colors: string[];
+  colors: Color[];
   name: string;
 }
 
@@ -25,7 +26,7 @@ export function ColorTab(props: ColorTabProps) {
         <div className="flex flex-wrap gap-2">
           {colors.map((color, index) => (
             <Badge key={index} variant="secondary">
-              {color}
+              {color.name}
             </Badge>
           ))}
         </div>

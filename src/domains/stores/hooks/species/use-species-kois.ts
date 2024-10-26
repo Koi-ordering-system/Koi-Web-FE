@@ -8,10 +8,10 @@ interface SpeciesKoiQuery {
 }
 
 export const useSpeciesKoiQuery = ({ options }: SpeciesKoiQuery) => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: [QueryKey.LIST_SPECIES_KOI, ...(options ? [options] : [])],
     queryFn: async () => await speciesKoiApi.getSpeciesKoiList(options),
   });
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch };
 };

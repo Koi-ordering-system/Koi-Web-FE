@@ -16,12 +16,12 @@ import usePaginationStore from "@/domains/stores/zustand/pagination/use-paginati
 import { useSearchStore } from "@/domains/stores/zustand/search/use-search-store";
 import SpeciesKoiTable from "@/views/dashboard-layout/species-koi-page/components/species-koi-table";
 import { PlusCircle } from "lucide-react";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SpeciesKoiPage = () => {
   const navigate = useNavigate();
-  const { search, setSearch } = useSearchStore();
+  const { search } = useSearchStore();
   const { updatePageIndex, pagination, updatePageSize } = usePaginationStore();
 
   const options = useMemo(() => {
@@ -38,18 +38,8 @@ const SpeciesKoiPage = () => {
 
     return newOptions;
   }, [search, pagination]);
-  const { data } = useSpeciesKoiQuery({ options });
 
-  console.log(data);
-
-  useEffect(() => {
-    if (pagination["species-koi"]?.pageIndex !== 1) {
-      updatePageIndex("species-koi", 1);
-    }
-    if (search["species-koi"]?.searchValue !== "") {
-      setSearch("species-koi", "");
-    }
-  });
+  const { data, refetch } = useSpeciesKoiQuery({ options });
 
   return (
     <div className="px-5 py-10 mx-auto">
@@ -61,12 +51,12 @@ const SpeciesKoiPage = () => {
         </Button>
       </div>
 
-      {data && <SpeciesKoiTable data={data.data.items} />}
+      {data && <SpeciesKoiTable data={data?.data!.items} refetch={refetch} />}
       <div className="flex items-center justify-between mt-6">
         <div></div>
         <Pagination
-          totalPages={data?.data.totalPages ?? 0}
-          currentPage={data?.data.pageNumber ?? 0}
+          totalPages={data?.data!.totalPages ?? 0}
+          currentPage={data?.data!.pageNumber ?? 0}
           onPageChange={(page) => updatePageIndex("species-koi", page)}
         />
 

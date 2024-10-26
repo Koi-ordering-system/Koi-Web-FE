@@ -125,7 +125,7 @@ const TravelSideFilter = () => {
 
 
       {/* Rating */}
-      {/* <div className="mt-10 space-y-5">
+      <div className="mt-10 space-y-5">
         <div>
           <div className="flex items-center justify-center gap-5">
             <span className="text-lg font-semibold text-primary">Rating</span>
@@ -156,7 +156,8 @@ const TravelSideFilter = () => {
               className="border-muted-foreground text-muted-foreground"
             >
               <span>4 ⭐️</span>
-            </Button><Button
+            </Button>
+            <Button
               variant="outline"
               className="border-muted-foreground text-muted-foreground"
             >
@@ -164,7 +165,7 @@ const TravelSideFilter = () => {
             </Button>
           </div>
         </div>
-      </div> */}
+      </div>
 
     </aside>
   );

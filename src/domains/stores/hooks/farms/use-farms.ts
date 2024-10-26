@@ -21,7 +21,6 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
     mutationFn: (data: FarmsBody) => farmApi.createFarm(data),
 
     onSuccess: () => {
-      refetch();
       toast({
         title: "Farm created successfully",
         description: "Farm has been created successfully",
@@ -42,7 +41,6 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
       farmApi.updateFarm(id, data),
 
     onSuccess: () => {
-      refetch();
       toast({
         title: "Farm updated successfully",
         description: "Farm has been updated successfully",
@@ -61,9 +59,9 @@ const UseFarmsQuery = ({ options }: UseFarmsQuery) => {
     data,
     isLoading,
     error,
-    refetch,
     createFarm,
     updateFarm,
+    refetch,
   };
 };
 
