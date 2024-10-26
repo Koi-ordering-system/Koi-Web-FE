@@ -9,7 +9,7 @@ export const travelApi = {
     options?: TravelsParamsRequest
   ): Promise<RootResponse<Data<TravelsResponse[]>> | undefined> => {
     try {
-      const response = await axiosInstance.get("/api/travels", {
+      const response = await axiosInstance.get("/api/trips", {
         params: options,
       });
 

@@ -23,6 +23,7 @@ import TravelPage from "@/views/dashboard-layout/travel-page/travel-page";
 import TravelDetail from "@/views/dashboard-layout/travel-page/travel-detail";
 import TravelEdit from "@/views/dashboard-layout/travel-page/travel-edit";
 import FeedbackPage from "@/views/dashboard-layout/feedback-page/feedback-page";
+import TravelPageUser from "@/views/main-layout/travel-page/travel-page";
 
 /*eslint-disable*/
 const RootLayout = lazy(() => import("@/components/layout/main-layout"));
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "travel",
-        element: <TravelPage/>,
+        element: <TravelPageUser/>,
       },
     ],
   },
