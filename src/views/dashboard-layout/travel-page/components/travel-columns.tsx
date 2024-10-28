@@ -24,9 +24,35 @@ export const TravelColumns = ({
 }: TravelColumnProps): ColumnDef<TravelsResponse>[] => [
   {
     header: "No",
+    cell: ({ row, table }) => {
+      return table.getSortedRowModel().flatRows.indexOf(row) + 1;
+    },
   },
   {
     header: "Image",
+    cell: ({ row }) => {
+      return row.original.farmImages && row.original.farmImages.length > 0 ? (
+        <img
+          src={row.original.farmImages[0]}
+          alt={row.original.farmName}
+          className="object-cover w-12 h-12 rounded-md"
+        />
+      ) : (
+        <span>No Image</span>
+      );
+    },
+  },
+  {
+    header: "Farm Name",
+    accessorKey: "farmName",
+  },
+  {
+    header: "Days",
+    accessorKey: "days",
+  },
+  {
+    header: "Price",
+    accessorKey: "price",
   },
   {
     id: "action",
