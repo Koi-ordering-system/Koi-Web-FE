@@ -79,9 +79,21 @@ export const travelApi = {
     }
   },
 
-  patchTravel: async (id: string): Promise<boolean | undefined> => {
+  patchTravelApprove: async (id: string): Promise<boolean | undefined> => {
     try {
-      await axiosInstance.patch(`/api/trips/${id}`);
+      await axiosInstance.patch(`/api/trips/${id}/approve`);
+
+      return true;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
+  },
+
+  patchTravelDeny: async (id: string): Promise<boolean | undefined> => {
+    try {
+      await axiosInstance.patch(`/api/trips/${id}/deny`);
 
       return true;
     } catch (error) {
