@@ -1,10 +1,4 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui";
 import { useOrderServiceQuery } from "@/domains/stores/hooks/orders/use-order-query";
 import OrderTable from "@/views/dashboard-layout/order-page/components/order-table";
 
