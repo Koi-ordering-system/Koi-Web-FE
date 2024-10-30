@@ -1,9 +1,16 @@
 import { axiosInstance } from "@/configs";
-import { OrderParams, OrdersUnApprovedResponse } from "@/domains/models/orders";
+import {
+  OrderParams,
+  OrdersDeliveryResponse,
+  OrdersPersonalResponse,
+  OrdersServiceResponse,
+  OrdersUnApprovedResponse,
+} from "@/domains/models/orders";
 import {
   OrdersBodyRequest,
   OrderStatus,
   OrdersWebhook,
+  OrderTripBodyRequest,
 } from "@/domains/models/orders/orders-body.request";
 import { RootRequest } from "@/domains/models/root/root.request";
 import { Data, RootResponse } from "@/domains/models/root/root.response";
@@ -11,8 +18,8 @@ import axios from "axios";
 
 export const orderApi = {
   getOrderDelivery: async (
-    options: RootRequest
-  ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
+    options?: RootRequest
+  ): Promise<RootResponse<Data<OrdersDeliveryResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/delivered", {
         params: options,
@@ -27,8 +34,8 @@ export const orderApi = {
   },
 
   getOrderUnApproved: async (
-    options: OrderParams
-  ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
+    options?: OrderParams
+  ): Promise<RootResponse<Data<OrdersUnApprovedResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/unapproved", {
         params: options,
@@ -43,8 +50,8 @@ export const orderApi = {
   },
 
   getOrdersPersonal: async (
-    options: RootRequest
-  ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
+    options?: RootRequest
+  ): Promise<RootResponse<Data<OrdersPersonalResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/personal", {
         params: options,
@@ -59,8 +66,8 @@ export const orderApi = {
   },
 
   getOrdersService: async (
-    options: RootRequest
-  ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
+    options?: RootRequest
+  ): Promise<RootResponse<Data<OrdersServiceResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/service", {
         params: options,
@@ -76,7 +83,7 @@ export const orderApi = {
 
   postOrdersKoi: async (
     data: OrdersBodyRequest
-  ): Promise<boolean | undefined> => {
+  ): Promise<{ payOSUrl: string } | undefined> => {
     try {
       const response = await axiosInstance.post("/api/orders/koi", data);
 
@@ -91,17 +98,15 @@ export const orderApi = {
   },
 
   postOrdersTripCreate: async (
-    data: OrdersBodyRequest
-  ): Promise<boolean | undefined> => {
+    data: OrderTripBodyRequest
+  ): Promise<{ payOSUrl: string } | undefined> => {
     try {
       const response = await axiosInstance.post(
         "/api/orders/trip/create",
         data
       );
 
-      if (response.status === 201) {
-        return response.data;
-      }
+      return response.data?.payOSUrl;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;

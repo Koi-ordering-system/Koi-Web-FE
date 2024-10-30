@@ -34,6 +34,7 @@ import { useLocation, useParams } from "react-router-dom";
 
 const TravelEdit = () => {
   const { id } = useParams<{ id: string }>();
+
   const { toast } = useToast();
   const { state: TravelState } = useLocation();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -48,9 +49,9 @@ const TravelEdit = () => {
   const form = useForm<TravelBodySchema>({
     resolver: zodResolver(travelSchema),
     defaultValues: {
-      farmId: TravelState.farmId || "",
-      days: TravelState.days || 0,
-      price: TravelState.price || 0,
+      farmId: TravelState?.farmId || "",
+      days: TravelState?.days || 0,
+      price: TravelState?.price || 0,
     },
   });
 
