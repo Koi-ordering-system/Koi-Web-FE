@@ -31,7 +31,7 @@ export default function TravelTopFilter() {
                 <SelectContent>
                   {travels?.data!.items?.map((travels) => (
                     <SelectItem key={travels.id} value={travels.id}>
-                      {travels.name}
+                      {travels.farmName}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -55,7 +55,7 @@ export default function TravelTopFilter() {
                 <SelectContent>
                   {travels?.data!.items?.map((travels) => (
                     <SelectItem key={travels.id} value={travels.id}>
-                      {travels.name}
+                      {travels.farmName}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -80,7 +80,7 @@ export default function TravelTopFilter() {
                 <SelectContent>
                   {travels?.data!.items?.map((travels) => (
                     <SelectItem key={travels.id} value={travels.id}>
-                      {travels.name}
+                      {travels.farmName}
                     </SelectItem>
                   ))}
                 </SelectContent>
