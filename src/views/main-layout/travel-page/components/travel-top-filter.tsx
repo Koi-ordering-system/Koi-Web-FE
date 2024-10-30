@@ -51,9 +51,9 @@ export default function TravelTopFilter() {
                                     <SelectValue placeholder="Travels" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {travels?.data.items?.map((travel) => (
+                                    {travels?.data?.items?.map((travel) => (
                                         <SelectItem key={travel.id} value={travel.id}>
-                                            {travel.name}
+                                            {travel.farmName}
                                         </SelectItem>
                                     ))}
                                 </SelectContent>
@@ -75,7 +75,7 @@ export default function TravelTopFilter() {
                                     <SelectValue placeholder="Farms" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {farms?.data.items?.map((farm) => (
+                                    {farms?.data?.items?.map((farm) => (
                                         <SelectItem key={farm.id} value={farm.id}>
                                             {farm.name}
                                         </SelectItem>

@@ -22,11 +22,21 @@ import UseFarmsQuery from "@/domains/stores/hooks/farms/use-farms";
 // import { useSpeciesQuery } from "@/domains/stores/hooks/species/use-species";
 import Show from "@/lib/show";
 import { Loader, Minus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useFilterStore from "@/domains/stores/zustand/filter/use-filter-store";
 
 const TravelSideFilter = () => {
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(10000000);
+
   const [date, setDate] = useState<Date>()
-  const { data: farms, isLoading: isFarmLoaing } = UseFarmsQuery({});
+  const { data: farms } = UseFarmsQuery({});
+  // console.log(farms);
+  const { updateFarmFilter, updatePriceRangeFilter } = useFilterStore();
+
+  useEffect(() => {
+    updatePriceRangeFilter("travel", [minPrice, maxPrice]);
+  }, [minPrice, maxPrice, updatePriceRangeFilter]);
 
   return (
     <aside className="">
@@ -41,19 +51,17 @@ const TravelSideFilter = () => {
 
           <div className="mt-6 ">
             <Show>
-              {/* <Show.When isTrue={isFarmLoaing}>
-                <div>
-                  <Loader />
-                </div>
-              </Show.When> */}
-              {/* <Show.Else> */}
               <Select>
                 <SelectTrigger>
                   <SelectValue placeholder="Farms" />
                 </SelectTrigger>
                 <SelectContent>
-                  {farms?.data.items?.map((farm) => (
-                    <SelectItem key={farm.id} value={farm.id}>
+                  {farms?.data?.items?.map((farm) => (
+                    <SelectItem
+                      key={farm.id}
+                      value={farm.id}
+                      onSelect={() => updateFarmFilter("travel", farm.id)}
+                    >
                       {farm.name}
                     </SelectItem>
                   ))}
@@ -61,41 +69,6 @@ const TravelSideFilter = () => {
               </Select>
               {/* </Show.Else> */}
             </Show>
-          </div>
-        </div>
-      </div>
-
-      {/* Days */}
-      <div className="mt-10 space-y-5">
-        <div>
-          <div className="flex items-center justify-center gap-5">
-            <span className="text-lg font-semibold text-primary">Farms</span>
-            <div className="w-full h-[2px] rounded-full bg-primary"></div>
-          </div>
-
-          <div className="">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className={cn(
-                    "w-full justify-start text-left font-normal",
-                    !date && "text-muted-foreground"
-                  )}
-                >
-                  <CalendarIcon />
-                  {date ? format(date, "PPP") : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
           </div>
         </div>
       </div>
@@ -110,12 +83,21 @@ const TravelSideFilter = () => {
 
           <div className="flex items-center gap-4 mt-6">
             <div className="flex items-center gap-1">
-              <Input type="number" min={1000000} defaultValue={1000000} />
+              <Input
+                type="text"
+                value={minPrice}
+                inputMode="none"
+                onChange={(e) => setMinPrice(Number(e.target.value))}
+              />
               <span className="font-semibold text-muted-foreground">VND</span>
             </div>
             <Minus className="size-4" />
             <div className="flex items-center gap-1">
-              <Input type="number" min={1000000} defaultValue={2000000} />
+              <Input
+                type="text"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+              />
               <span className="font-semibold text-muted-foreground">VND</span>
             </div>
           </div>
@@ -125,7 +107,7 @@ const TravelSideFilter = () => {
 
 
       {/* Rating */}
-      <div className="mt-10 space-y-5">
+      {/* <div className="mt-10 space-y-5">
         <div>
           <div className="flex items-center justify-center gap-5">
             <span className="text-lg font-semibold text-primary">Rating</span>
@@ -165,7 +147,7 @@ const TravelSideFilter = () => {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
 
     </aside>
   );

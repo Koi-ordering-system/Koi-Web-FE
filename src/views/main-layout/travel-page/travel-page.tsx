@@ -6,9 +6,9 @@ import TravelTopFilter from "./components/travel-top-filter";
 
 const TravelPageUser = () => {
   return (
-    <section className="container m-10">
+    <section className="container mx-auto p-10">
       <TravelBreadcumb/>
-      {/* <TravelTopFilter/> */}
+      {/* <TravelTopFilter/> */}        
       <main className="grid grid-cols-8 mt-10 gap-7">
         <div className="col-span-2 ">
           <TravelSideFilter/>
