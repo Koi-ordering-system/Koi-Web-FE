@@ -1,10 +1,8 @@
 import { Loading } from '@/components/common';
 import { useTravelDetail } from '@/domains/stores/hooks/travels/use-travel-detail';
-import React from 'react'
 import { useParams } from 'react-router-dom';
 import TravelBreadcumb from './components/travel-breadcumb';
 import TotalPage from './components/total-page';
-import FormOrderTrip from './components/form-order-trip';
 import TravelFarmDetail from './components/travel-farm-detail';
 
 export default function travelDetail() {
@@ -33,10 +31,7 @@ export default function travelDetail() {
                         <TravelFarmDetail travel={data.data!} />
                     </div>
                     <div className='col-span-1'>
-                        <TotalPage />
-                    </div>
-                    <div className='col-span-2'>
-                        <FormOrderTrip />
+                        <TotalPage travel={data.data!}/>
                     </div>
                 </div>
             </div>

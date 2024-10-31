@@ -1,7 +1,6 @@
 import { TravelDetailResponse } from '@/domains/models/travels/travels-detail-response'
-import React, { useState } from 'react'
-import { Button, Separator } from "@/components/ui";
-import { ShoppingCart } from 'lucide-react';
+import { useState } from 'react'
+import { Separator } from "@/components/ui";
 import StarRating from '@/components/rating/star-rating';
 
 export default function TravelFarmDetail({ travel }: { travel: TravelDetailResponse }) {
@@ -36,7 +35,7 @@ export default function TravelFarmDetail({ travel }: { travel: TravelDetailRespo
         />
 
         {/* Thumbnail Images */}
-        <div className="flex items-center mt-4">
+        <div className="flex items-center mt-4 space-x-2">
           {/* Previous Button */}
           <button
             onClick={handlePrevious}
@@ -47,17 +46,25 @@ export default function TravelFarmDetail({ travel }: { travel: TravelDetailRespo
           </button>
 
           {/* Thumbnails */}
-          <div className="flex">
-            {travel.farmImages.slice(startIndex, startIndex + imagesToShow).map((image, index) => (
+          <div className="flex space-x-1">
+            {travel.farmImages.length > 0 ? (
+              travel.farmImages.slice(startIndex, startIndex + imagesToShow).map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`${travel.farmName} thumbnail ${index + 1}`}
+                  onClick={() => setSelectedImage(image)}
+                  className={`w-16 h-16 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === image ? 'border-orange-500' : 'border-transparent'
+                    }`}
+                />
+              ))
+            ) : (
               <img
-                key={index}
-                src={image}
-                alt={`${travel.farmName} thumbnail ${index + 1}`}
-                onClick={() => setSelectedImage(image)}
-                className={`w-16 h-16 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === image ? 'border-orange-500' : 'border-transparent'
-                  }`}
+                src="https://via.placeholder.com/150"
+                alt="Placeholder thumbnail"
+                className="w-16 h-16 object-cover rounded-lg border-2 border-gray-300"
               />
-            ))}
+            )}
           </div>
 
           {/* Next Button */}

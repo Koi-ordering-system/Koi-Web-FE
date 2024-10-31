@@ -56,7 +56,7 @@ export default function TravelList() {
           </div>
 
           {data.data.items.map((trip) => (
-            <div key={trip.id} className="w-full flex bg-white p-4 rounded-lg shadow-md mb-6">
+            <div key={trip.id} className="w-full flex bg-secondary p-4 rounded-lg shadow-md mb-6">
               {/* Hình ảnh */}
               <img
                 src={trip.farmImages.length > 0 ? trip.farmImages[0] : "https://via.placeholder.com/150"}
@@ -75,7 +75,7 @@ export default function TravelList() {
                   <div className="text-gray-600 text-sm mb-4">
                     <div className="flex">
                       <div className="mr-8">
-                        <p className="font-bold text-black">{trip.days} Days</p>
+                        <p className="font-bold text-gray-600">{trip.days} Days</p>
                         <p className="text-gray-500">Address: {trip.farmName}</p>
                       </div>
                     </div>

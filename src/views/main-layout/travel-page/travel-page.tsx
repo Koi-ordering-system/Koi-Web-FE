@@ -2,7 +2,6 @@
 import TravelBreadcumb from "./components/travel-breadcumb";
 import TravelSideFilter from "./components/travel-side-filter";
 import TravelList from "./components/travel-list";
-import TravelTopFilter from "./components/travel-top-filter";
 
 const TravelPageUser = () => {
   return (
