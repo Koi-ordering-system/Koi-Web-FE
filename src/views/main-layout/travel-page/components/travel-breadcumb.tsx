@@ -19,7 +19,7 @@ const TravelBreadcumb = ({ travelName }: { travelName?: string }) => {
         {travelName ?
           <div className="flex items-center">
             <span
-              onClick={() => navigator("/Travel")}
+              onClick={() => navigator("/travel")}
               className="text-2xl font-bold text-muted-foreground hover:cursor-pointer hover:text-muted-foreground/70 hover:underline">
               Travel
             </span>

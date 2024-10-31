@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/configs";
 import { Data, RootResponse } from "@/domains/models/root/root.response";
 import { TravelsBodyRequest } from "@/domains/models/travels";
+import { TravelDetailResponse } from "@/domains/models/travels/travels-detail-response";
 import { TravelsParamsRequest } from "@/domains/models/travels/travels-params.resquest";
 import { TravelsResponse } from "@/domains/models/travels/travels.response";
 import axios from "axios";
@@ -24,7 +25,7 @@ export const travelApi = {
 
   getTravel: async (
     id: string
-  ): Promise<RootResponse<TravelsResponse> | undefined> => {
+  ): Promise<RootResponse<TravelDetailResponse> | undefined> => {
     try {
       const response = await axiosInstance.get(`/api/trips/${id}`);
 

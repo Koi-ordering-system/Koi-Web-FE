@@ -23,6 +23,9 @@ import TravelPage from "@/views/dashboard-layout/travel-page/travel-page";
 import TravelDetail from "@/views/dashboard-layout/travel-page/travel-detail";
 import TravelEdit from "@/views/dashboard-layout/travel-page/travel-edit";
 import FeedbackPage from "@/views/dashboard-layout/feedback-page/feedback-page";
+import TravelPageUser from "@/views/main-layout/travel-page/travel-page";
+import TravelDetailUser from "@/views/main-layout/travel-page/travel-detail";
+import HistoryPage from "@/views/main-layout/history-page/history-page";
 
 /*eslint-disable*/
 const RootLayout = lazy(() => import("@/components/layout/main-layout"));
@@ -51,17 +54,21 @@ const router = createBrowserRouter([
         path: "farm/:id",
         element: <FarmDetail />,
       },
-      // {
-      //   path: "history",
-      //   element: <HistoryPage />,
-      // },
+      {
+        path: "history",
+        element: <HistoryPage />,
+      },
       {
         path: "policy",
         element: <PolicyPage />,
       },
       {
         path: "travel",
-        element: <TravelPage/>,
+        element: <TravelPageUser/>,
+      },
+      {
+        path: "travel/:id",
+        element: <TravelDetailUser/>,
       },
     ],
   },

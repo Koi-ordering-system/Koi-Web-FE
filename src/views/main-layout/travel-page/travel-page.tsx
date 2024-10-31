@@ -2,14 +2,13 @@
 import TravelBreadcumb from "./components/travel-breadcumb";
 import TravelSideFilter from "./components/travel-side-filter";
 import TravelList from "./components/travel-list";
-import TravelTopFilter from "./components/travel-top-filter";
 
-const TravelPage = () => {
+const TravelPageUser = () => {
   return (
-    <section className="container my-10">
+    <section className="container mx-auto p-10">
       <TravelBreadcumb/>
-      <TravelTopFilter/>
-      <main className="grid grid-cols-8 mt-10">
+      {/* <TravelTopFilter/> */}        
+      <main className="grid grid-cols-8 mt-10 gap-7">
         <div className="col-span-2 ">
           <TravelSideFilter/>
         </div>
@@ -21,4 +20,4 @@ const TravelPage = () => {
   );
 };
 
-export default TravelPage;
+export default TravelPageUser;
