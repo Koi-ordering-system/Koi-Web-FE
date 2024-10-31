@@ -2,7 +2,7 @@ import { useState } from 'react'
 import jwtDecode from 'jwt-decode';
 import { OrderTripBodyRequest } from '@/domains/models/orders/orders-body.request';
 import { MinusIcon, PlusIcon } from 'lucide-react';
-import { Button, Separator, Toast } from '@/components/ui';
+import { Button, Separator } from '@/components/ui';
 import { TravelDetailResponse } from '@/domains/models/travels/travels-detail-response';
 import { useToast } from '@/hooks';
 import { orderApi } from '@/domains/services/orders/orders.service';

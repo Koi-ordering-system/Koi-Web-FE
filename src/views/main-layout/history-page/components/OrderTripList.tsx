@@ -2,11 +2,9 @@ import {
     Card,
     CardContent,
     CardFooter,
-    CardHeader, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue
+    CardHeader,
 } from "@/components/ui";
-import Pagination from "@/components/common/pagination";
 import { useOrderPersonalQuery } from "@/domains/stores/hooks/orders/use-order-query";
-import OrderTable from "@/views/dashboard-layout/order-page/components/order-table";
 
 export default function OrderTripList() {
     const { data, isLoading, error } = useOrderPersonalQuery({
@@ -45,7 +43,7 @@ export default function OrderTripList() {
             <Card className="w-full text-xl font-semibold ">
                 <CardHeader>Order Trips</CardHeader>
                 <CardContent>
-                    <OrderTable data={dataOrderTripFiltered} />
+                    {/* <OrderTable data={dataOrderTripFiltered} /> */}
                 </CardContent>
                 <CardFooter>
                     {/* <Button>
@@ -55,7 +53,7 @@ export default function OrderTripList() {
             </Card>
             <div className="flex items-center justify-between mt-6">
                 <div></div>
-                <Pagination
+                {/* <Pagination
                     totalPages={data?.data.totalPages ?? 0}
                     currentPage={data?.data.pageNumber ?? 0}
                     onPageChange={(page) => updatePageIndex("travel", page)}
@@ -86,7 +84,7 @@ export default function OrderTripList() {
                             ))}
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> */}
             </div>
         </div >
     )

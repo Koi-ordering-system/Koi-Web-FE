@@ -1,6 +1,6 @@
 import Search from "@/components/common/search";
 import {
-  Button,
+  // Button,
   Input,
   Select,
   SelectContent,
@@ -8,20 +8,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui";
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+// import { format } from "date-fns"
+// import { Calendar as CalendarIcon } from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+// import { cn } from "@/lib/utils"
+// import { Calendar } from "@/components/ui/calendar"
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "@/components/ui/popover"
 import UseFarmsQuery from "@/domains/stores/hooks/farms/use-farms";
 // import { useSpeciesQuery } from "@/domains/stores/hooks/species/use-species";
 import Show from "@/lib/show";
-import { Loader, Minus } from "lucide-react";
+import {  Minus } from "lucide-react";
 import { useEffect, useState } from "react";
 import useFilterStore from "@/domains/stores/zustand/filter/use-filter-store";
 
@@ -29,7 +29,7 @@ const TravelSideFilter = () => {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(10000000);
 
-  const [date, setDate] = useState<Date>()
+  // const [date, setDate] = useState<Date>()
   const { data: farms } = UseFarmsQuery({});
   // console.log(farms);
   const { updateFarmFilter, updatePriceRangeFilter } = useFilterStore();
