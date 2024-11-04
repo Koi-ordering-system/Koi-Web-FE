@@ -4,4 +4,5 @@ export interface SpeciesKoisParams extends RootRequest {
   sortBy?: string;
   sortOrder?: string;
   search?: string;
+  id?: string;
 }

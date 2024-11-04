@@ -15,6 +15,7 @@ import HomePage from "@/views/main-layout/home-page/home-page";
 import PolicyPage from "@/views/main-layout/policy-page/policy-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
 import OrderPage from "@/views/dashboard-layout/order-page/order-page";
+import OrderKoiPage from "@/views/dashboard-layout/order-page/order-koi-page";
 import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
 import SpeciesKoiPage from "@/views/dashboard-layout/species-koi-page/species-koi-page";
 import SpeciesKoiDetail from "@/views/dashboard-layout/species-koi-page/species-koi-detail";
@@ -23,6 +24,9 @@ import TravelPage from "@/views/dashboard-layout/travel-page/travel-page";
 import TravelDetail from "@/views/dashboard-layout/travel-page/travel-detail";
 import TravelEdit from "@/views/dashboard-layout/travel-page/travel-edit";
 import FeedbackPage from "@/views/dashboard-layout/feedback-page/feedback-page";
+import TravelPageUser from "@/views/main-layout/travel-page/travel-page";
+import TravelDetailUser from "@/views/main-layout/travel-page/travel-detail";
+import HistoryPage from "@/views/main-layout/history-page/history-page";
 
 /*eslint-disable*/
 const RootLayout = lazy(() => import("@/components/layout/main-layout"));
@@ -51,17 +55,21 @@ const router = createBrowserRouter([
         path: "farm/:id",
         element: <FarmDetail />,
       },
-      // {
-      //   path: "history",
-      //   element: <HistoryPage />,
-      // },
+      {
+        path: "history",
+        element: <HistoryPage />,
+      },
       {
         path: "policy",
         element: <PolicyPage />,
       },
       {
         path: "travel",
-        element: <TravelPage/>,
+        element: <TravelPageUser />,
+      },
+      {
+        path: "travel/:id",
+        element: <TravelDetailUser />,
       },
     ],
   },
@@ -137,6 +145,10 @@ const router = createBrowserRouter([
       {
         path: "species-koi/create",
         element: <SpeciesKoiEdit />,
+      },
+      {
+        path: "order/koi",
+        element: <OrderKoiPage />,
       },
     ],
   },

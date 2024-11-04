@@ -99,14 +99,14 @@ export const orderApi = {
 
   postOrdersTripCreate: async (
     data: OrderTripBodyRequest
-  ): Promise<{ payOSUrl: string } | undefined> => {
+  ): Promise<RootResponse<{ payOSUrl: string }> | undefined> => {
     try {
       const response = await axiosInstance.post(
         "/api/orders/trip/create",
         data
       );
 
-      return response.data?.payOSUrl;
+      return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;

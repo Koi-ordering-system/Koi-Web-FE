@@ -3,12 +3,12 @@ export interface TravelsResponse {
   farmId: string;
   farmName: string;
   farmImages: string[];
-  koiDetails: KoiDetail[];
+  koiDetails: Kois[];
   days: number;
   price: number;
 }
 
-export interface KoiDetail {
+interface Kois {
   id: string;
   name: string;
 }

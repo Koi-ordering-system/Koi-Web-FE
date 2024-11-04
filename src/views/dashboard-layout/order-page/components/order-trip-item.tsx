@@ -48,7 +48,11 @@ const OrderTripItem: React.FC<OrderTripItemProps> = ({ data, refetch }) => {
   return (
     <Card>
       <CardHeader>
-        <img src={data.images[0]} alt={data.farmName} />
+        <img
+          src={data.images[0]}
+          alt={data.farmName}
+          className="object-cover w-full rounded-md h-52"
+        />
       </CardHeader>
       <CardContent>
         <CardTitle>{data.farmName}</CardTitle>

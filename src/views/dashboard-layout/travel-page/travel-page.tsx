@@ -46,7 +46,7 @@ const TravelPage = () => {
         <Search placeholder="Search koi" keyObject="travels" />
         <Button className="space-x-2" onClick={() => navigator("create")}>
           <PlusCircle className="size-5" />
-          <span className="text-sm">Create New Farm</span>
+          <span className="text-sm">Create Trip</span>
         </Button>
       </div>
       <TravelTable data={data?.data?.items ?? []} />

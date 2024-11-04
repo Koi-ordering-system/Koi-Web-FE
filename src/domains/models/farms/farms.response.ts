@@ -1,5 +1,3 @@
-import { Kois } from "@/domains/models/farms/farm-detail.response";
-
 export interface FarmsResponse {
   id: string;
   name: string;
@@ -14,4 +12,17 @@ export interface FarmsResponse {
 interface farmImages {
   id: string;
   url: string;
+}
+
+interface Kois {
+  id: string;
+  name: string;
+  quantity: number;
+  imageUrls: string[];
+  colors: Color[];
+}
+
+interface Color {
+  id: string;
+  name: string;
 }

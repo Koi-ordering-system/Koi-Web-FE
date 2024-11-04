@@ -43,7 +43,7 @@ const MenuProfile = () => {
     <>
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild className="after:border after:border-none">
-          <Avatar className="size-10 hover:cursor-pointer hover:bg-secondary ">
+          <Avatar className="size-6 hover:cursor-pointer hover:bg-secondary ">
             <AvatarFallback>{user?.username}</AvatarFallback>
             <AvatarImage src={user?.imageUrl} alt={user?.username || ""} />
           </Avatar>
