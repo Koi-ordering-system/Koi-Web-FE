@@ -2,6 +2,7 @@ export interface OrdersUnApprovedResponse {
   id: string;
   farmId: string;
   farmName: string;
+  images: string[];
   days: number;
   price: number;
 }
