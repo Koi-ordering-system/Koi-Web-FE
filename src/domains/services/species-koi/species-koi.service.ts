@@ -50,7 +50,9 @@ export const speciesKoiApi = {
       formData.append("maxSize", data.maxSize.toString());
       formData.append("price", data.price.toString());
       formData.append("colors", data.colors);
-      formData.append("koiImages", JSON.stringify(data.koiImages));
+      data.koiImages!.forEach((image) => {
+        formData.append("koiImages", image);
+      });
 
       const response = await axiosInstance.post("/api/kois", formData, {
         headers: {
@@ -84,12 +86,12 @@ export const speciesKoiApi = {
     }
   },
 
-  deleteSpeciesKoi: async (
-    id: string
-  ): Promise<RootResponse<null> | undefined> => {
+  deleteSpeciesKoi: async (id: string): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.delete(`/api/kois/${id}`);
-      return response.data;
+      if (response.status === 204) {
+        return true;
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;

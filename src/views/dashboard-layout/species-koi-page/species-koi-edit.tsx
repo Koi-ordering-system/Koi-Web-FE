@@ -20,6 +20,7 @@ import {
   Input,
   Textarea,
 } from "@/components/ui";
+import { Color } from "@/domains/models/species-kois";
 import {
   SpeciesKoiBodySchema,
   speciesKoiSchema,
@@ -30,7 +31,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, PlusCircle, Save, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const MAX_IMAGES = 8;
 
@@ -42,6 +43,8 @@ const SpeciesKoiEdit = () => {
     FarmState?.koiImages || []
   );
 
+  const navigate = useNavigate();
+
   const form = useForm<SpeciesKoiBodySchema>({
     resolver: zodResolver(speciesKoiSchema),
     defaultValues: {
@@ -51,7 +54,17 @@ const SpeciesKoiEdit = () => {
       maxSize: FarmState?.maxSize || 0,
       price: FarmState?.price || 0,
       koiImages: FarmState?.koiImages || [],
-      colors: FarmState?.colors || "",
+      colors: Array.isArray(FarmState?.colors)
+        ? (FarmState.colors as (string | Color)[])
+            .map((color: string | Color) => {
+              if (typeof color === "string") {
+                return color;
+              } else {
+                return color.name;
+              }
+            })
+            .join(", ")
+        : "",
     },
   });
 
@@ -62,20 +75,19 @@ const SpeciesKoiEdit = () => {
   }, [FarmState]);
 
   const onSubmit = async (data: SpeciesKoiBodySchema) => {
-    const formDataWithImages = {
-      ...data,
-      koiImages: imageFiles,
-    };
-
     const response: boolean | undefined = id
-      ? await speciesKoiApi.updateSpeciesKoi(id, formDataWithImages)
-      : await speciesKoiApi.createSpeciesKoi(formDataWithImages);
+      ? await speciesKoiApi.updateSpeciesKoi(id, data)
+      : await speciesKoiApi.createSpeciesKoi(data);
 
     if (response === true) {
       toast({
         title: "Success",
         description: "Changes saved successfully.",
       });
+
+      setTimeout(() => {
+        navigate("/dashboard/species-koi");
+      }, 1000);
     } else {
       toast({
         title: "Error",
@@ -84,7 +96,7 @@ const SpeciesKoiEdit = () => {
     }
   };
 
-  const convertFileToDataURL = (file: File): Promise<string> => {
+  const convertFileToDataURL = (file: File | Blob): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -95,11 +107,11 @@ const SpeciesKoiEdit = () => {
     });
   };
 
-  const handleFilesSelected = async (files: File[]) => {
+  const handleFilesSelected = async (files: File[] | Blob[]) => {
     try {
       const newImages = await Promise.all(files.map(convertFileToDataURL));
       setImageFiles((prevImages) => [...prevImages, ...newImages]);
-      form.setValue("koiImages", [...imageFiles, ...newImages]);
+      form.setValue("koiImages", [...files]);
     } catch (error) {
       console.error("Error converting files to data URLs:", error);
     }
@@ -108,7 +120,7 @@ const SpeciesKoiEdit = () => {
   const removeImage = (index: number) => {
     const newFiles = imageFiles.filter((_, i) => i !== index);
     setImageFiles(newFiles);
-    form.setValue("koiImages", newFiles, { shouldValidate: true });
+    (form.getValues("koiImages") as Blob[]).filter((_, i) => i !== index);
   };
 
   return (

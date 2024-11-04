@@ -30,11 +30,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const TravelEdit = () => {
   const { id } = useParams<{ id: string }>();
-
+  const navigate = useNavigate();
   const { toast } = useToast();
   const { state: TravelState } = useLocation();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -71,6 +71,8 @@ const TravelEdit = () => {
         title: "Success",
         description: "Travel created successfully",
       });
+
+      navigate("/dashboard/traveling");
     } else {
       toast({
         title: "Error",

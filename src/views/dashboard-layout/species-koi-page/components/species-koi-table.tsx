@@ -21,7 +21,7 @@ const SpeciesKoiTable = ({ data, refetch }: SpeciesKoiTableProps) => {
   const handleDelete = async (id: string) => {
     const response = await speciesKoiApi.deleteSpeciesKoi(id);
 
-    if (response?.succeeded === true) {
+    if (response === true) {
       toast({
         title: "Success",
         description: "Data deleted successfully",

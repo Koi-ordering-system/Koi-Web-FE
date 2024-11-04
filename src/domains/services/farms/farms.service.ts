@@ -72,7 +72,9 @@ export const farmApi = {
       formData.append("owner", data.owner);
       formData.append("address", data.address);
       formData.append("description", data.description);
-      formData.append("farmImages", JSON.stringify(data.farmImages));
+      data.farmImages.forEach((image) => {
+        formData.append("farmImages", image);
+      });
 
       const response = await axiosInstance.post("/api/farms", formData, {
         headers: {
@@ -98,7 +100,9 @@ export const farmApi = {
       formData.append("owner", data.owner);
       formData.append("address", data.address);
       formData.append("description", data.description);
-      formData.append("farmImages", JSON.stringify(data.farmImages));
+      data.farmImages.forEach((image) => {
+        formData.append("farmImages", image);
+      });
 
       const response = await axiosInstance.put(`/api/farms/${id}`, formData, {
         headers: {

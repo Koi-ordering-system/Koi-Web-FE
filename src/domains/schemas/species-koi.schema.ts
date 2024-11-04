@@ -1,3 +1,4 @@
+import { FileSchema } from "@/domains/schemas/file.schema";
 import { z } from "zod";
 
 const MAX_IMAGES = 8;
@@ -9,7 +10,7 @@ export const speciesKoiSchema = z.object({
   maxSize: z.number().min(0, "Maximum size must be positive"),
   price: z.number().min(0, "Price must be positive"),
   koiImages: z
-    .array(z.string().url("Must be a valid URL"))
+    .array(FileSchema)
     .max(MAX_IMAGES, `Maximum of ${MAX_IMAGES} images allowed`),
   colors: z.string().min(2, "Color must be at least 2 characters"),
 });

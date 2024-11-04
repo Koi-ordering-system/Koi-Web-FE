@@ -53,7 +53,7 @@ const FarmForm: React.FC<FarmFormProps> = ({ nextStep, getId }) => {
     }
   }, [form]);
 
-  const convertFileToDataURL = (file: File): Promise<string> => {
+  const convertFileToDataURL = (file: File | Blob): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -64,11 +64,11 @@ const FarmForm: React.FC<FarmFormProps> = ({ nextStep, getId }) => {
     });
   };
 
-  const handleFilesSelected = async (files: File[]) => {
+  const handleFilesSelected = async (files: File[] | Blob[]) => {
     try {
       const newImages = await Promise.all(files.map(convertFileToDataURL));
       setImages((prevImages) => [...prevImages, ...newImages]);
-      form.setValue("farmImages", [...images, ...newImages]);
+      form.setValue("farmImages", [...files]);
     } catch (error) {
       console.error("Error converting files to data URLs:", error);
     }
@@ -76,10 +76,7 @@ const FarmForm: React.FC<FarmFormProps> = ({ nextStep, getId }) => {
 
   const handleRemoveImage = (index: number) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index) as any);
-    form.setValue(
-      "farmImages",
-      images.filter((_, i) => i !== index)
-    );
+    (form.getValues("farmImages") as Blob[]).filter((_, i) => i !== index);
   };
 
   // This function is used to submit the form data to the server
