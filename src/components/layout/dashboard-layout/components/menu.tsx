@@ -4,7 +4,7 @@ import {
   LucideProps,
   // MessageCircleMore,
   Plane,
-  SquareChartGantt,
+  // SquareChartGantt,
   SquareMenu,
   Tractor,
 } from "lucide-react";
@@ -24,7 +24,7 @@ const menu: MenuProps[] = [
   { name: "Species Koi", href: "/dashboard/species-koi", icon: FishIcon },
   { name: "Traveling", href: "/dashboard/traveling", icon: Plane },
   { name: "Order", href: "/dashboard/order", icon: SquareMenu },
-  { name: "Feedback", href: "/dashboard/feedback", icon: SquareChartGantt },
+  // { name: "Feedback", href: "/dashboard/feedback", icon: SquareChartGantt },
   // { name: "Chatting", href: "/dashboard/chatting", icon: MessageCircleMore },
 ];
 

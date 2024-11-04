@@ -4,7 +4,7 @@ import { CloudUpload } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface FileInputProps {
-  onFilesSelected: (files: File[]) => void;
+  onFilesSelected: (files: File[] | Blob[]) => void;
   maxFiles?: number;
   disabled?: boolean;
 }

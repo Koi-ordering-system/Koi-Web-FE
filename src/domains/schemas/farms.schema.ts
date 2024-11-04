@@ -1,3 +1,4 @@
+import { FileSchema } from "@/domains/schemas/file.schema";
 import { z } from "zod";
 
 export const farmsSchema = z.object({
@@ -6,7 +7,7 @@ export const farmsSchema = z.object({
   address: z.string().min(1, "Address is required"),
   description: z.string().min(1, "Description is required"),
   farmImages: z
-    .array(z.string())
+    .array(FileSchema)
     .max(8, "You can upload a maximum of 8 images"),
 });
 

@@ -3,7 +3,7 @@ export interface FarmsBody {
   owner: string;
   address: string;
   description: string;
-  farmImages: string[];
+  farmImages: Blob[];
 }
 
 export interface FarmAddKoiBody {
