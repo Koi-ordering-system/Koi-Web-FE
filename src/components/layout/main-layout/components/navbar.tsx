@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 const menu = [
   { name: "Home", href: "/" },
   { name: "Farm", href: "/farm" },
-  { name: "Policy", href: "/policy" },
+  // { name: "Policy", href: "/policy" },
   { name: "Travel", href: "/travel" },
 ];
 

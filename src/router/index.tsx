@@ -15,6 +15,7 @@ import HomePage from "@/views/main-layout/home-page/home-page";
 import PolicyPage from "@/views/main-layout/policy-page/policy-page";
 import DashboardPage from "@/views/dashboard-layout/dashboard-page/dashboard-page";
 import OrderPage from "@/views/dashboard-layout/order-page/order-page";
+import OrderKoiPage from "@/views/dashboard-layout/order-page/order-koi-page";
 import ChatPage from "@/views/dashboard-layout/chat-page/chat-page";
 import SpeciesKoiPage from "@/views/dashboard-layout/species-koi-page/species-koi-page";
 import SpeciesKoiDetail from "@/views/dashboard-layout/species-koi-page/species-koi-detail";
@@ -64,11 +65,11 @@ const router = createBrowserRouter([
       },
       {
         path: "travel",
-        element: <TravelPageUser/>,
+        element: <TravelPageUser />,
       },
       {
         path: "travel/:id",
-        element: <TravelDetailUser/>,
+        element: <TravelDetailUser />,
       },
     ],
   },
@@ -144,6 +145,10 @@ const router = createBrowserRouter([
       {
         path: "species-koi/create",
         element: <SpeciesKoiEdit />,
+      },
+      {
+        path: "order/koi",
+        element: <OrderKoiPage />,
       },
     ],
   },

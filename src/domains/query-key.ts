@@ -23,4 +23,6 @@ export const QueryKey = {
 
   LIST_TRAVELS: "LISTTRAVELS",
   DETAIL_TRAVEL: "DETAILTRAVEL",
+
+  LIST_USERS: "LISTUSERS",
 };
