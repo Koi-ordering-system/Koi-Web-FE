@@ -83,7 +83,7 @@ export const orderApi = {
 
   postOrdersKoi: async (
     data: OrdersBodyRequest
-  ): Promise<{ payOSUrl: string } | undefined> => {
+  ): Promise<RootResponse<{ payOSUrl: string }> | undefined> => {
     try {
       const response = await axiosInstance.post("/api/orders/koi", data);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus, Trash2 } from "lucide-react";
@@ -23,7 +23,6 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Input,
   Separator,
 } from "@/components/ui";
 import {
@@ -42,7 +41,6 @@ const prepaid = [
   { id: 1, name: "30%", value: 0.3 },
   { id: 2, name: "50%", value: 0.5 },
   { id: 3, name: "70%", value: 0.7 },
-  { id: 4, name: "100%", value: 1 },
 ];
 
 export default function OrderKoiPage() {
@@ -50,6 +48,9 @@ export default function OrderKoiPage() {
   const { toast } = useToast();
   const [farmID, setFarmID] = useState<string>();
   const [koiID, setKoiID] = useState<string>();
+  const [maxSize, setMaxSize] = useState<number>();
+  const [minSize, setMinSize] = useState<number>();
+  const [quantity, setQuantity] = useState<number>();
 
   const optionsFarm: SpeciesKoisParams = useMemo(() => {
     const options: SpeciesKoisParams = {
@@ -93,8 +94,8 @@ export default function OrderKoiPage() {
 
     const response = await orderApi.postOrdersKoi(data);
 
-    if (response) {
-      window.location.href = response.payOSUrl;
+    if (response?.succeeded) {
+      window.location.href = response.data?.payOSUrl ?? "/";
     } else {
       toast({
         title: "Error",
@@ -105,6 +106,22 @@ export default function OrderKoiPage() {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsSubmitting(false);
   };
+
+  useEffect(() => {
+    if (koiID && farmID) {
+      setMaxSize(
+        speciesKois?.data?.items.find((koi) => koi.id === koiID)?.maxSize ?? 1
+      );
+      setMinSize(
+        speciesKois?.data?.items.find((koi) => koi.id === koiID)?.minSize ?? 1
+      );
+      setQuantity(
+        farms?.data?.items
+          .find((farm) => farm.id === farmID)
+          ?.kois.find((koi) => koi.id === koiID)?.quantity ?? 1
+      );
+    }
+  }, [koiID, speciesKois?.data?.items, farmID, farms?.data?.items]);
 
   return (
     <div className="container py-10 mx-auto">
@@ -229,6 +246,10 @@ export default function OrderKoiPage() {
                                           <SelectItem
                                             key={koi.id}
                                             value={koi.id}
+                                            onClick={() => {
+                                              setMaxSize(koi.maxSize);
+                                              setMinSize(koi.minSize);
+                                            }}
                                           >
                                             {koi.name}
                                           </SelectItem>
@@ -245,17 +266,35 @@ export default function OrderKoiPage() {
                                 render={({ field }) => (
                                   <FormItem className="w-full">
                                     <FormLabel>Quantity</FormLabel>
-                                    <FormControl>
-                                      <Input
-                                        type="number"
-                                        {...field}
-                                        onChange={(e) =>
-                                          field.onChange(
-                                            parseInt(e.target.value)
-                                          )
-                                        }
-                                      />
-                                    </FormControl>
+                                    <Select
+                                      onValueChange={(value) => {
+                                        field.onChange(parseInt(value));
+                                      }}
+                                      defaultValue={field.value.toString()}
+                                      disabled={!farmID || !koiID}
+                                    >
+                                      <FormControl>
+                                        <SelectTrigger>
+                                          <SelectValue placeholder="Select a quantity" />
+                                        </SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent>
+                                        {Array.from(
+                                          { length: quantity || 0 },
+                                          (_, i) => i + 1
+                                        ).map((size: number) => (
+                                          <SelectItem
+                                            key={size.toString()}
+                                            value={size.toString()}
+                                            onClick={() => {
+                                              field.onChange(size);
+                                            }}
+                                          >
+                                            {size}
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
                                     <FormMessage />
                                   </FormItem>
                                 )}
@@ -302,17 +341,35 @@ export default function OrderKoiPage() {
                                 render={({ field }) => (
                                   <FormItem className="w-full">
                                     <FormLabel>Minimum Size (cm)</FormLabel>
-                                    <FormControl>
-                                      <Input
-                                        type="number"
-                                        {...field}
-                                        onChange={(e) =>
-                                          field.onChange(
-                                            parseFloat(e.target.value)
-                                          )
-                                        }
-                                      />
-                                    </FormControl>
+                                    <Select
+                                      onValueChange={(value) => {
+                                        field.onChange(parseInt(value));
+                                      }}
+                                      defaultValue={field.value.toString()}
+                                      disabled={!farmID || !koiID}
+                                    >
+                                      <FormControl>
+                                        <SelectTrigger>
+                                          <SelectValue placeholder="Select a min size" />
+                                        </SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent>
+                                        {Array.from(
+                                          { length: maxSize || 0 },
+                                          (_, i) => i + 1
+                                        ).map((size: number) => {
+                                          if (size >= minSize!)
+                                            return (
+                                              <SelectItem
+                                                key={size.toString()}
+                                                value={size.toString()}
+                                              >
+                                                {size}
+                                              </SelectItem>
+                                            );
+                                        })}
+                                      </SelectContent>
+                                    </Select>
                                     <FormMessage />
                                   </FormItem>
                                 )}
@@ -323,17 +380,35 @@ export default function OrderKoiPage() {
                                 render={({ field }) => (
                                   <FormItem className="w-full">
                                     <FormLabel>Maximum Size (cm)</FormLabel>
-                                    <FormControl>
-                                      <Input
-                                        type="number"
-                                        {...field}
-                                        onChange={(e) =>
-                                          field.onChange(
-                                            parseFloat(e.target.value)
-                                          )
-                                        }
-                                      />
-                                    </FormControl>
+                                    <Select
+                                      onValueChange={(value) => {
+                                        field.onChange(parseInt(value));
+                                      }}
+                                      defaultValue={field.value.toString()}
+                                      disabled={!farmID || !koiID}
+                                    >
+                                      <FormControl>
+                                        <SelectTrigger>
+                                          <SelectValue placeholder="Select a max size" />
+                                        </SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent>
+                                        {Array.from(
+                                          { length: maxSize || 0 },
+                                          (_, i) => i + 1
+                                        ).map((size: number) => {
+                                          if (size >= minSize!)
+                                            return (
+                                              <SelectItem
+                                                key={size.toString()}
+                                                value={size.toString()}
+                                              >
+                                                {size}
+                                              </SelectItem>
+                                            );
+                                        })}
+                                      </SelectContent>
+                                    </Select>
                                     <FormMessage />
                                   </FormItem>
                                 )}
