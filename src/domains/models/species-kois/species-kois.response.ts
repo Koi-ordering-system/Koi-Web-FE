@@ -7,5 +7,4 @@ export interface SpeciesKoisResponse {
   price: number;
   imageUrls: string[];
   color: string;
-  farmKoiId: string;
 }

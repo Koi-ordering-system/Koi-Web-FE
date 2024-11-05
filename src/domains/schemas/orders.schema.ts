@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const koiSchema = z
   .object({
-    farmKoiId: z.string().min(1, "Farm Koi ID is required"),
+    koiId: z.string().min(1, "Farm Koi ID is required"),
     quantity: z.number().min(1, "Quantity must be at least 1"),
     color: z.string().min(1, "Color is required"),
     minSize: z.number().min(0, "Minimum size must be non-negative"),
