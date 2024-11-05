@@ -6,7 +6,7 @@ export interface OrdersBodyRequest {
 }
 
 interface Kois {
-  farmKoiId: string;
+  koiId: string;
   quantity: number;
   color: string;
   minSize: number;

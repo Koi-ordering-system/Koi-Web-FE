@@ -26,7 +26,6 @@ import {
   Input,
   Separator,
 } from "@/components/ui";
-
 import {
   OrderKoiFormValues,
   orderKoiSchema,
@@ -79,7 +78,7 @@ export default function OrderKoiPage() {
     defaultValues: {
       userId: "",
       farmId: "",
-      kois: [{ farmKoiId: "", quantity: 1, color: "", minSize: 0, maxSize: 0 }],
+      kois: [{ koiId: "", quantity: 1, color: "", minSize: 0, maxSize: 0 }],
       prePaidPrice: 0,
     },
   });
@@ -190,7 +189,7 @@ export default function OrderKoiPage() {
                         size="sm"
                         onClick={() =>
                           append({
-                            farmKoiId: "",
+                            koiId: "",
                             quantity: 1,
                             color: "",
                             minSize: 0,
@@ -209,7 +208,7 @@ export default function OrderKoiPage() {
                             <div className="flex items-center justify-between gap-4">
                               <FormField
                                 control={form.control}
-                                name={`kois.${index}.farmKoiId`}
+                                name={`kois.${index}.koiId`}
                                 render={({ field }) => (
                                   <FormItem className="w-full">
                                     <FormLabel>Koi Species</FormLabel>
@@ -229,7 +228,7 @@ export default function OrderKoiPage() {
                                         {speciesKois?.data?.items.map((koi) => (
                                           <SelectItem
                                             key={koi.id}
-                                            value={koi.farmKoiId}
+                                            value={koi.id}
                                           >
                                             {koi.name}
                                           </SelectItem>
