@@ -69,7 +69,9 @@ const TravelEdit = () => {
     if (response === true) {
       toast({
         title: "Success",
-        description: "Travel created successfully",
+        description: id
+          ? "Travel updated successfully"
+          : "Travel created successfully",
       });
 
       navigate("/dashboard/traveling");
@@ -89,9 +91,11 @@ const TravelEdit = () => {
     <div className="container">
       <Card>
         <CardHeader>
-          <CardTitle>Create Travel</CardTitle>
+          <CardTitle>{id ? "Edit Travel" : "Create Travel"}</CardTitle>
           <CardDescription>
-            Enter the details for a new travel package.
+            {id
+              ? "Edit the travel details below"
+              : "Fill in the travel details below"}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -134,7 +138,7 @@ const TravelEdit = () => {
                       <Input
                         type="number"
                         min="1"
-                        placeholder="Enter price"
+                        placeholder="Enter days"
                         onBlur={field.onBlur}
                         value={field.value === 0 ? "" : field.value}
                         onChange={(e) =>
