@@ -9,7 +9,7 @@ export interface FarmsResponse {
   kois: Kois[];
 }
 
-interface farmImages {
+export interface farmImages {
   id: string;
   url: string;
 }

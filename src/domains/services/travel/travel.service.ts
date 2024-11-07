@@ -56,11 +56,17 @@ export const travelApi = {
   updateTravel: async (
     id: string,
     data: TravelsBodyRequest
-  ): Promise<RootResponse<null> | undefined> => {
+  ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.put(`/api/trips/${id}`, data);
 
-      return response.data;
+      if (
+        response.status === 200 ||
+        response.status === 204 ||
+        response.status === 201
+      ) {
+        return true;
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;
