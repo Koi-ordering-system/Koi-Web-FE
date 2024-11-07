@@ -1,10 +1,10 @@
 import { DataTable } from "@/components/common";
-import { OrdersServiceResponse } from "@/domains/models/orders";
+import { OrdersPersonalResponse } from "@/domains/models/orders";
 import { orderServiceColumn } from "@/views/dashboard-layout/order-page/components/order-columns";
 import React from "react";
 
 interface OrderTableProps {
-  data: OrdersServiceResponse[];
+  data: OrdersPersonalResponse[];
 }
 
 const OrderTable: React.FC<OrderTableProps> = ({ data }) => {
