@@ -39,7 +39,6 @@ const FarmTable: React.FC<FarmTableProps> = ({ data, refetch }) => {
   };
 
   const handleEdit = (data: FarmsResponse) => {
-    console.log(data);
     navigation(`${data.id}/edit`, { state: data });
     return;
   };
