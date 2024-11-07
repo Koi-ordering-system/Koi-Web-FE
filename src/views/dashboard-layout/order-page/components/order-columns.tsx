@@ -1,7 +1,7 @@
-import { OrdersServiceResponse } from "@/domains/models/orders";
+import { OrdersPersonalResponse } from "@/domains/models/orders";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const orderServiceColumn = (): ColumnDef<OrdersServiceResponse>[] => [
+export const orderServiceColumn = (): ColumnDef<OrdersPersonalResponse>[] => [
   {
     header: "Farm Name",
     accessorKey: "farmName",
